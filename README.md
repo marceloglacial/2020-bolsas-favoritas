@@ -1,42 +1,31 @@
-# Quero Educação DevTest 2020
+# Bolsas Favaritas (2020)
 
-[![time tracker](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react.svg)](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react)
+[![time tracker](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react.svg)](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react) [![Netlify Status](https://api.netlify.com/api/v1/badges/624c2bb1-d323-4d12-8047-a52ead1bbf28/deploy-status)](https://app.netlify.com/sites/quero-devtest-2020/deploys)
 
-## DevTest Instructions 
-* [Quero Educação Repo](https://github.com/quero-edu/front-end-test-quero).
+Project created to practice React skills using [Quero Educação Dev Test](https://github.com/quero-edu/front-end-test-quero).
 
+## Features
 
-## Tools
-* [React](https://github.com/facebook/create-react-app)
-* [SASS](https://github.com/facebook/create-react-app)
-* [Create React App](https://github.com/facebook/create-react-app)
+- [React](https://github.com/facebook/create-react-app)
+- [SASS](https://github.com/facebook/create-react-app)
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Netlify CI/CD](https://app.netlify.com/sites/quero-devtest-2020/deploys)
 
+## Live Demo
 
-## Available Scripts
+https://quero-devtest-2020.netlify.com/
 
-In the project directory, you can run:
+## How to Install
 
-### `npm start`
+- [Install npm](https://www.npmjs.com/get-npm)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run install on terminal:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```terminal
+npm install
+```
 
-### `npm test`
+## How to Use
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
+- `npm start` - Start developement
+- `npm run build` - Build project
