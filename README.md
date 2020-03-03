@@ -1,6 +1,6 @@
 # Bolsas Favoritas (2020)
 
-[![time tracker](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react.svg)](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react) [![Netlify Status](https://api.netlify.com/api/v1/badges/624c2bb1-d323-4d12-8047-a52ead1bbf28/deploy-status)](https://app.netlify.com/sites/quero-devtest-2020/deploys)
+[![time tracker](https://wakatime.com/badge/github/marceloglacial/2020-quero-devtest-react.svg)](https://wakatime.com/badge/github/marceloglacial/2020-bolsas-favoritas) [![Netlify Status](https://api.netlify.com/api/v1/badges/624c2bb1-d323-4d12-8047-a52ead1bbf28/deploy-status)](https://app.netlify.com/sites/bolsas-favoritas-2020/deploys)
 
 Project created to practice React skills using [Quero Educação Dev Test](https://github.com/quero-edu/front-end-test-quero).
 
@@ -13,7 +13,7 @@ Project created to practice React skills using [Quero Educação Dev Test](https
 
 ## Live Demo
 
-https://quero-devtest-2020.netlify.com/
+https://bolsas-favoritas-2020.netlify.com/
 
 ## How to Install
 
