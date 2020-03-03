@@ -15,6 +15,3 @@ const App = props => {
 };
 
 export default App;
-
-// TODO: Github project
-// TODO: Add wakatime log badge
