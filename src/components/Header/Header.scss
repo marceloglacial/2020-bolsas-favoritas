@@ -1,0 +1,30 @@
+.header {
+  padding: 1rem;
+}
+.header__container {
+  display: flex;
+}
+.header__info {
+  width: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+.header__title {
+  display: inline-block;
+  width: 300px;
+  height: 100%;
+  background: url('../../static/images/logo.png') no-repeat center center;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+.header__userinfo {
+  width: 300px;
+}

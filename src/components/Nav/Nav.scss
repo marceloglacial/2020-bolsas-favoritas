@@ -1,0 +1,18 @@
+.nav {
+  background: var(--blue);
+  color: var(--white);
+}
+.nav__container {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.nav__item {
+  padding: 1rem;
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
+}
