@@ -4,39 +4,37 @@ import './components/Styles/_base.scss';
 import Nav from './components/Nav/Nav';
 import Main from './components/Main/Main';
 import axios from 'axios';
-import dataLocal from './api/data.json';
+// import dataLocal from './api/data.json';
+import Loading from './components/Loading/Loading';
 
 const App = props => {
   const [data, setData] = useState([]);
-  const [url] = useState('https://testapi.io/api/glacial/scholarship');
+  const [url] = useState('http://localhost:4000/data');
+  // const [url] = useState('https://testapi.io/api/glacial/scholarship');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsError(false);
-  //     setIsLoading(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
 
-  //     try {
-  //       const result = await axios(url);
-  //       setData(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setIsError(true);
-  //     }
-  //     setIsLoading(false);
-  //   };
-  //   fetchData();
-  // }, [url]);
+      try {
+        const result = await axios(url);
+        setData(result.data);
+      } catch (error) {
+        console.log(error);
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [url]);
 
   const Content = props => {
-    if (isError) return <h1>Something is wrong ...</h1>;
+    if (isError) return <Loading text={'Something is wrong'} />;
     if (isLoading) {
-      return (
-        <section className='container'>
-          <h1>Loading ...</h1>
-        </section>
-      );
+      return <Loading text={'Loading ...'} />;
     } else {
       return <Main data={props.data} />;
     }
@@ -46,7 +44,7 @@ const App = props => {
     <>
       <Header />
       <Nav />
-      <Content data={dataLocal} />
+      <Content data={data} />
     </>
   );
 };
