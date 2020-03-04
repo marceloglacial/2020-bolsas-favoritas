@@ -4,15 +4,17 @@
   background: var(--blue);
   color: var(--white);
 
-  @include media('<=tablet') {
+  @include media('<desktop') {
     display: none;
   }
 }
+
 .nav__container {
   display: flex;
   list-style: none;
   padding: 0;
 }
+
 .nav__item {
   padding: 1rem;
   &:first-child {
