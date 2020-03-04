@@ -3,11 +3,11 @@
 .container {
   margin: 0 auto;
   max-width: 1440px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   @include media('<desktop') {
     margin: 0;
     max-width: unset;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 }
 
