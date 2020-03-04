@@ -1,8 +1,8 @@
 import React from 'react';
 import './CardGrid.scss';
-import data from '../../api/data.json';
 
 const CardGrid = props => {
+  const data = props.data;
   const Card = props => {
     return (
       <section className='card'>
