@@ -1,0 +1,29 @@
+@import './mixins';
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  @include media('<desktop') {
+    margin: 0;
+    max-width: unset;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-self: center;
+}
+
+.hidden-on-mobile {
+  @include media('<desktop') {
+    display: none;
+  }
+}
+.hidden-on-desktop {
+  @include media('>=desktop') {
+    display: none;
+  }
+}

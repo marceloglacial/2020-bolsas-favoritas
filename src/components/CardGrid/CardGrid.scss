@@ -1,8 +1,13 @@
+@import '../Styles/mixins';
+
 .cardgrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
   margin: 2rem 0;
+  @include media('<=tablet') {
+    display: none;
+  }
 }
 .card {
   display: flex;

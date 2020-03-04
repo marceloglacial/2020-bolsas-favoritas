@@ -1,30 +1,107 @@
-.header {
-  padding: 1rem;
-}
-.header__container {
+@import '../Styles/mixins';
+
+// Container
+.page-header__container {
   display: flex;
-}
-.header__info {
-  width: 300px;
-  display: flex;
-  align-items: center;
+  font-weight: 700;
+  @include media('<desktop') {
+    padding: 1rem 0;
+  }
 }
 
-.header__logo {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
+// Page Info and Contact
+.page-header__info {
+  color: var(--blue);
+  width: 500px;
+  @include media('<desktop') {
+    width: 70px;
+  }
+
+  .page-header__contact {
+    p {
+      margin: 0;
+    }
+  }
+
+  .page-header__howto {
+    border-right: solid 4px var(--grey-dark);
+    height: calc(100% - 2rem);
+    margin-right: 1rem;
+    padding-right: 1rem;
+
+    @include media('<desktop') {
+      border-width: 3px;
+      flex-direction: column;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .page-header__send {
+    font-size: 14px;
+  }
+
+  .fa-info {
+    border: solid 3px var(--blue);
+    border-radius: 100%;
+    color: var(--blue);
+    margin-right: 0.5rem;
+    padding: 5px 10px;
+    @include media('<desktop') {
+      margin-bottom: 2px;
+    }
+  }
+
+  .fa-whatsapp {
+    color: var(--green);
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
 }
-.header__title {
-  display: inline-block;
-  width: 300px;
-  height: 100%;
+
+// Page Logo
+.page-header__logo {
+  flex-grow: 1;
+}
+
+.page-header__title {
   background: url('../../static/images/logo.png') no-repeat center center;
   background-size: contain;
+  display: inline-block;
+  height: calc(100% - 2rem);
   text-indent: -9999px;
+  width: 100%;
+  @include media('<desktop') {
+    height: 100%;
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
-.header__userinfo {
-  width: 300px;
+// User Info
+.page-header__user-info {
+  color: var(--blue);
+  width: 500px;
+  @include media('<desktop') {
+    border-left: solid 3px var(--grey-dark);
+    flex-direction: column-reverse;
+    padding-left: 1rem;
+    width: 70px;
+  }
+}
+.page-header__user-name {
+  flex-grow: 1;
+  text-align: right;
+  @include media('<desktop') {
+    text-align: center;
+    flex-grow: unset;
+  }
+}
+.page-header__user-logo {
+  padding-left: 0.5rem;
+  font-size: 2rem;
+  @include media('<desktop') {
+    padding: 0;
+  }
 }
