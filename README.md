@@ -10,6 +10,7 @@ Project created to practice React skills using [Quero Educação Dev Test](https
 - [SASS](https://github.com/facebook/create-react-app)
 - [Create React App](https://github.com/facebook/create-react-app)
 - [Netlify CI/CD](https://app.netlify.com/sites/quero-devtest-2020/deploys)
+- [AirBnb JS / React Guideline](https://github.com/airbnb/javascript)
 - [Quero Edu CSS Guideline](https://github.com/quero-edu/frontend/blob/master/css.md)
 
 ## Live Demo
