@@ -1,23 +1,26 @@
-.header__container {
+// Container
+.page-header__container {
   display: flex;
+  font-weight: 700;
 }
 
-.header__info {
+// Page Info and Contact
+.page-header__info {
   color: var(--blue);
-  font-weight: 700;
+  width: 500px;
 
-  .header__howto {
+  .page-header__contact p {
+    margin: 0;
+  }
+
+  .page-header__howto {
     border-right: solid 4px var(--grey-dark);
     height: calc(100% - 2rem);
     margin-right: 1rem;
     padding-right: 1rem;
   }
 
-  .header__contact p {
-    margin: 0;
-  }
-
-  .header__send {
+  .page-header__send {
     font-size: 14px;
   }
 
@@ -35,11 +38,30 @@
   }
 }
 
-.header__title {
+// Page Logo
+.page-header__logo {
+  flex-grow: 1;
+}
+
+.page-header__title {
   background: url('../../static/images/logo.png') no-repeat center center;
   background-size: contain;
   display: inline-block;
   height: 100%;
   text-indent: -9999px;
-  width: 300px;
+  width: 100%;
+}
+
+// User Info
+.page-header__user-info {
+  color: var(--blue);
+  width: 500px;
+}
+.page-header__user-name {
+  flex-grow: 1;
+  text-align: right;
+}
+.page-header__user-logo {
+  padding-left: 0.5rem;
+  font-size: 2rem;
 }

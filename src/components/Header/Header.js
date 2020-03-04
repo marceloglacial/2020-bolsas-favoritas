@@ -3,25 +3,30 @@ import './Header.scss';
 
 const Header = props => {
   return (
-    <header className='header'>
-      <div className='header__container container'>
-        <div className='header__info flex-center'>
-          <div className='header__howto flex-center'>
+    <header className='page-header'>
+      <div className='page-header__container container'>
+        <div className='page-header__info flex-center'>
+          <div className='page-header__howto flex-center'>
             <i className='fas fa-info' />
             Como Funciona
           </div>
-          <div className='header__contact flex-center'>
+          <div className='page-header__contact flex-center'>
             <i className='fab fa-whatsapp' />
-            <div className='header__number'>
-              <p className='header__tel'>0800 123 2222</p>
-              <p className='header__send'>Envie mensagem ou ligue</p>
+            <div className='page-header__number'>
+              <p className='page-header__tel'>0800 123 2222</p>
+              <p className='page-header__send'>Envie mensagem ou ligue</p>
             </div>
           </div>
         </div>
-        <div className='header__logo  flex-center'>
-          <h1 className='header__title'>Quero Bolsa</h1>
+        <div className='page-header__logo flex-center'>
+          <h1 className='page-header__title'>Quero Bolsa</h1>
         </div>
-        <div className='header__userinfo  flex-center'>Nome Sobrenome</div>
+        <div className='page-header__user-info flex-center'>
+          <div className='page-header__user-name'>Nome Sobrenome</div>
+          <div className='page-header__user-logo'>
+            <i class='far fa-user-circle'></i>
+          </div>
+        </div>
       </div>
     </header>
   );
