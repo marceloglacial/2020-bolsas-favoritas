@@ -64,7 +64,7 @@
     position: absolute;
     right: 0;
     top: 3rem;
-    transition: height 0.3s ease-in-out;
+    transition: max-height 0.15s ease-in-out;
     width: 100%;
 
     &.is-open {
