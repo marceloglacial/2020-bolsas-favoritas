@@ -11,19 +11,20 @@
   }
 }
 
+// Importants to override styles
 .flex-center {
-  align-items: center;
-  display: flex;
-  justify-self: center;
+  align-items: center !important;
+  display: flex !important;
+  justify-self: center !important;
 }
 
 .hidden-on-mobile {
   @include media('<desktop') {
-    display: none;
+    display: none !important;
   }
 }
 .hidden-on-desktop {
   @include media('>=desktop') {
-    display: none;
+    display: none !important;
   }
 }

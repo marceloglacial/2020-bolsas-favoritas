@@ -4,6 +4,8 @@
 .page-header__container {
   display: flex;
   font-weight: 700;
+  position: relative;
+  z-index: 999999;
   @include media('<desktop') {
     padding: 1rem 0;
   }
