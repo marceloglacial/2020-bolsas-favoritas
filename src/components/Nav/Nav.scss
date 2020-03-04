@@ -13,13 +13,12 @@
 
 .nav__container {
   display: flex;
-  list-style: none;
-  padding: 0;
 }
 
 .nav__item {
   display: inline-block;
 }
+
 .nav__item a {
   color: var(--white);
   display: inline-block;

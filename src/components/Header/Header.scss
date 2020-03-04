@@ -72,6 +72,7 @@
   background-size: contain;
   display: inline-block;
   height: calc(100% - 2rem);
+  min-width: 120px;
   text-indent: -9999px;
   width: 100%;
   @include media('<desktop') {
