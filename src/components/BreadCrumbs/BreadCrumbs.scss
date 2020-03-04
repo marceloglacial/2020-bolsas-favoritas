@@ -1,0 +1,49 @@
+@import '../Styles/mixins';
+
+.breadcrumbs__container {
+  color: var(--black);
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.breadcrumbs__item:not(:last-child) {
+  padding-right: 1rem;
+  position: relative;
+
+  @include media('<desktop') {
+    &:before {
+      content: '<';
+      margin-right: 0.5rem;
+      color: var(--blue);
+    }
+  }
+
+  @include media('>tablet') {
+    &:after {
+      content: '/';
+      margin-left: 1rem;
+    }
+  }
+}
+
+.breadcrumbs__link {
+  color: var(--blue);
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    background: var(--blue);
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 1px;
+    position: absolute;
+    right: left;
+    transition: width 0.2s ease-in-out;
+    width: 0%;
+    z-index: 0;
+  }
+  &:hover:before {
+    width: 100%;
+  }
+}

@@ -1,0 +1,30 @@
+@import './mixins';
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @include media('<desktop') {
+    margin: 0;
+    max-width: unset;
+  }
+}
+
+// Importants to override styles
+.flex-center {
+  align-items: center !important;
+  display: flex !important;
+  justify-self: center !important;
+}
+
+.hidden-on-mobile {
+  @include media('<desktop') {
+    display: none !important;
+  }
+}
+.hidden-on-desktop {
+  @include media('>=desktop') {
+    display: none !important;
+  }
+}
