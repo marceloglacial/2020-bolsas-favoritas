@@ -1,6 +1,12 @@
+@import '../Styles/mixins';
+
 .nav {
   background: var(--blue);
   color: var(--white);
+
+  @include media('<=tablet') {
+    display: none;
+  }
 }
 .nav__container {
   display: flex;

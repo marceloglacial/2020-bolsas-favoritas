@@ -1,16 +1,26 @@
+@import '../Styles/mixins';
+
 // Container
 .page-header__container {
   display: flex;
   font-weight: 700;
+  @include media('<desktop') {
+    padding: 1rem 0;
+  }
 }
 
 // Page Info and Contact
 .page-header__info {
   color: var(--blue);
   width: 500px;
+  @include media('<desktop') {
+    width: 70px;
+  }
 
-  .page-header__contact p {
-    margin: 0;
+  .page-header__contact {
+    p {
+      margin: 0;
+    }
   }
 
   .page-header__howto {
@@ -18,6 +28,14 @@
     height: calc(100% - 2rem);
     margin-right: 1rem;
     padding-right: 1rem;
+
+    @include media('<desktop') {
+      border-width: 3px;
+      flex-direction: column;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .page-header__send {
@@ -25,12 +43,16 @@
   }
 
   .fa-info {
-    border: solid 2px var(--blue);
+    border: solid 3px var(--blue);
     border-radius: 100%;
     color: var(--blue);
     margin-right: 0.5rem;
     padding: 5px 10px;
+    @include media('<desktop') {
+      margin-bottom: 2px;
+    }
   }
+
   .fa-whatsapp {
     color: var(--green);
     font-size: 2rem;
@@ -47,21 +69,39 @@
   background: url('../../static/images/logo.png') no-repeat center center;
   background-size: contain;
   display: inline-block;
-  height: 100%;
+  height: calc(100% - 2rem);
   text-indent: -9999px;
   width: 100%;
+  @include media('<desktop') {
+    height: 100%;
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
 // User Info
 .page-header__user-info {
   color: var(--blue);
   width: 500px;
+  @include media('<desktop') {
+    border-left: solid 3px var(--grey-dark);
+    flex-direction: column-reverse;
+    padding-left: 1rem;
+    width: 70px;
+  }
 }
 .page-header__user-name {
   flex-grow: 1;
   text-align: right;
+  @include media('<desktop') {
+    text-align: center;
+    flex-grow: unset;
+  }
 }
 .page-header__user-logo {
   padding-left: 0.5rem;
   font-size: 2rem;
+  @include media('<desktop') {
+    padding: 0;
+  }
 }

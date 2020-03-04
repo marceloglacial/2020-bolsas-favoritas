@@ -8,9 +8,10 @@ const Header = props => {
         <div className='page-header__info flex-center'>
           <div className='page-header__howto flex-center'>
             <i className='fas fa-info' />
-            Como Funciona
+            <span className='hidden-on-mobile'>Como Funciona</span>
+            <span className='hidden-on-desktop'>Ajuda</span>
           </div>
-          <div className='page-header__contact flex-center'>
+          <div className='page-header__contact flex-center hidden-on-mobile'>
             <i className='fab fa-whatsapp' />
             <div className='page-header__number'>
               <p className='page-header__tel'>0800 123 2222</p>
@@ -22,9 +23,12 @@ const Header = props => {
           <h1 className='page-header__title'>Quero Bolsa</h1>
         </div>
         <div className='page-header__user-info flex-center'>
-          <div className='page-header__user-name'>Nome Sobrenome</div>
+          <div className='page-header__user-name'>
+            <span className='hidden-on-mobile'>Nome Sobrenome</span>
+            <span className='hidden-on-desktop'>Conta</span>
+          </div>
           <div className='page-header__user-logo'>
-            <i class='far fa-user-circle'></i>
+            <i className='far fa-user-circle'></i>
           </div>
         </div>
       </div>
