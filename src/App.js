@@ -4,13 +4,11 @@ import './components/Styles/_base.scss';
 import Nav from './components/Nav/Nav';
 import Main from './components/Main/Main';
 import axios from 'axios';
-// import dataLocal from './api/data.json';
 import Loading from './components/Loading/Loading';
 
 const App = props => {
   const [data, setData] = useState([]);
-  const [url] = useState('http://localhost:4000/data');
-  // const [url] = useState('https://testapi.io/api/glacial/scholarship');
+  const [url] = useState(process.env.REACT_APP_API_ENDPOINT);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
