@@ -1,15 +1,14 @@
 import React from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
-import CardGrid from '../CardGrid/CardGrid';
 
-const Main = props => {
+const Loading = props => {
   return (
     <>
       <main className='main container'>
         <BreadCrumbs />
-        <CardGrid {...props} />
+        <h3>{props.text}</h3>
       </main>
     </>
   );
 };
-export default Main;
+export default Loading;
