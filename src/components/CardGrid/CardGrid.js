@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
+import Card from '../Card/Card';
 import './CardGrid.scss';
 
 const CardGrid = props => {
@@ -26,20 +27,36 @@ const CardGrid = props => {
     fetchData();
   }, [url]);
 
-  const Card = props => {
-    return (
-      <section className='card'>
-        <div className='card__info'>{props.children}</div>
-      </section>
-    );
+  const Grid = props => {
+    return <section className='cardgrid container'>{props.children}</section>;
+  };
+
+  const Cards = props => {
+    const cards = props.data;
+    return cards.map((card, index) => {
+      return <Card info={card} key={index} />;
+    });
   };
 
   const Content = props => {
-    if (isError) return <Loading text={'Something is wrong'} />;
+    if (isError)
+      return (
+        <Grid>
+          <Loading text={'Something is wrong'} />
+        </Grid>
+      );
     if (isLoading) {
-      return <Loading text={'Loading ...'} />;
+      return (
+        <Grid>
+          <Loading text={'Loading ...'} />
+        </Grid>
+      );
     } else {
-      return <Card data={props.data} />;
+      return (
+        <Grid>
+          <Cards data={data} />
+        </Grid>
+      );
     }
   };
 
@@ -48,48 +65,6 @@ const CardGrid = props => {
   //   ].sort();
   //   const cities = [...new Set(data.map(item => item.campus.name))].sort();
 
-  const cards = data.map((item, index) => {
-    const {
-      university,
-      course,
-      start_date,
-      full_price,
-      discount_percentage
-    } = item;
-
-    const total =
-      (parseFloat(full_price) * parseFloat(discount_percentage)) / 100;
-
-    return (
-      <Card key={index}>
-        <img src={university.logo_url} alt='' />
-        <br />
-        {university.name}
-        <br />
-        {course.name}
-        <br />
-        {university.score}
-        <br />
-        {course.kind} - {course.shift}
-        <br />
-        Início das aulas em {start_date}
-        <hr />
-        Mensalidade com o Quero Bolsa:
-        <br />
-        R$: {parseFloat(full_price)}
-        <br />
-        R$: {total} / mês
-      </Card>
-    );
-  });
-
-  return (
-    <>
-      <section className='cardgrid'>
-        <Card>Adicionar bolsa</Card>
-        {cards}
-      </section>
-    </>
-  );
+  return <Content />;
 };
 export default CardGrid;

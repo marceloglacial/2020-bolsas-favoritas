@@ -1,0 +1,77 @@
+.card {
+  align-items: center;
+  background: var(--white);
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+
+.card__info {
+  width: 100%;
+}
+
+.card__university-name {
+  font-weight: 700;
+  padding: 2rem 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.card__course-name {
+  color: var(--blue-dark);
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.card__course-kind {
+  font-weight: 700;
+  padding: 1.5rem 0;
+  text-transform: uppercase;
+}
+.card__university-score {
+  font-weight: 700;
+  padding-bottom: 1.5rem;
+  border-bottom: solid 2px var(--shadow);
+}
+
+.card__start-date {
+  padding-bottom: 1.5rem;
+  border-bottom: solid 2px var(--shadow);
+}
+
+.card__price-title {
+  font-weight: 700;
+  padding-top: 0.5rem;
+}
+
+.card__price-full {
+  text-decoration: line-through;
+}
+
+.card__price-discount strong {
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
+.card__actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+
+  button {
+    width: 50%;
+  }
+}

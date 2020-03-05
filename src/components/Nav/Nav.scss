@@ -17,6 +17,10 @@
 
 .nav__item {
   display: inline-block;
+
+  &--active {
+    font-weight: 700;
+  }
 }
 
 .nav__item a {
