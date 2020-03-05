@@ -7,7 +7,7 @@ const Main = props => {
     <>
       <main className='main container'>
         <BreadCrumbs />
-        <CardGrid {...props} />
+        {/* <CardGrid /> */}
       </main>
     </>
   );

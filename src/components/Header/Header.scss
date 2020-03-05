@@ -1,6 +1,5 @@
 @import '../Styles/mixins';
 
-// Container
 .page-header__container {
   display: flex;
   font-weight: 700;
@@ -10,8 +9,6 @@
     padding: 1rem 0;
   }
 }
-
-// Page Info and Contact
 .page-header__info {
   color: var(--blue);
   width: 500px;
@@ -62,7 +59,6 @@
   }
 }
 
-// Page Logo
 .page-header__logo {
   flex-grow: 1;
 }
@@ -82,7 +78,6 @@
   }
 }
 
-// User Info
 .page-header__user-info {
   color: var(--blue);
   width: 500px;

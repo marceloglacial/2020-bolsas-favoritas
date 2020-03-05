@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Loading from '../Loading/Loading';
 import './CardGrid.scss';
 
 const CardGrid = props => {
-  const data = props.data;
+  const [data, setData] = useState([]);
+  const [url] = useState(process.env.REACT_APP_API_ENDPOINT);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(url);
+        setData(result.data);
+      } catch (error) {
+        console.log(error);
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [url]);
+
   const Card = props => {
     return (
       <section className='card'>
         <div className='card__info'>{props.children}</div>
       </section>
     );
+  };
+
+  const Content = props => {
+    if (isError) return <Loading text={'Something is wrong'} />;
+    if (isLoading) {
+      return <Loading text={'Loading ...'} />;
+    } else {
+      return <Card data={props.data} />;
+    }
   };
 
   //   const universities = [
