@@ -3,6 +3,7 @@ import axios from 'axios';
 import Loading from '../Loading/Loading';
 import Card from '../Card/Card';
 import './CardGrid.scss';
+import CardAdd from '../Card/CardAdd';
 
 const CardGrid = props => {
   const [data, setData] = useState([]);
@@ -54,6 +55,7 @@ const CardGrid = props => {
     } else {
       return (
         <Grid>
+          <CardAdd {...props} />
           <Cards data={data} />
         </Grid>
       );
