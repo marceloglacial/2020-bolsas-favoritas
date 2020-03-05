@@ -76,9 +76,6 @@
   }
 }
 
-.card--add {
-  min-height: 400px;
-}
 .card--add__icon {
   color: var(--blue);
   font-size: 2.5rem;
@@ -90,6 +87,7 @@
 .card--add__link {
   color: var(--black);
   display: flex;
+  min-height: 300px;
   text-decoration: none;
 }
 .card--add__title,

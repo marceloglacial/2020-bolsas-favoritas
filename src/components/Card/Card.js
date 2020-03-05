@@ -24,9 +24,6 @@ const Card = props => {
     }
   };
 
-  // TODO: Stars
-  // TODO: Card - Add course
-
   return (
     <section className='card'>
       <figure className='card__logo'>

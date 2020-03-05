@@ -5,7 +5,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
   padding-bottom: 2rem;
-  @include media('<=tablet') {
+  @include media('<desktop') {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include media('<tablet') {
     grid-template-columns: 1fr;
   }
 }
