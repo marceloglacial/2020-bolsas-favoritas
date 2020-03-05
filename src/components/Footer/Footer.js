@@ -7,34 +7,38 @@ const Footer = props => {
       icon: 'fab fa-whatsapp',
       title: '0800 123 2222',
       description: 'Sex - Sex 8h-22h',
-      titlemobile: 'Segunda a sexta de 8h às 22h'
+      titlemobile: 'Segunda a sexta de 8h às 22h',
+      link: `tel:08001232222`
     },
     {
       icon: 'far fa-comments',
       title: 'Chat Ao Vivo',
       description: 'Sex - Sex 8h-22h',
-      titlemobile: 'Chat'
+      titlemobile: 'Chat',
+      link: '#'
     },
     {
       icon: 'far fa-envelope',
       title: 'Mande um e-mail',
       description: 'Respondemos rapidinho',
-      titlemobile: 'E-mail'
+      titlemobile: 'E-mail',
+      link: 'mailto:email@email.com'
     },
     {
       icon: 'fas fa-info',
       title: 'Central de ajuda',
       description: 'Encontre todas as respostas',
-      titlemobile: 'Ajuda'
+      titlemobile: 'Ajuda',
+      link: '#'
     }
   ];
 
   const FooterItems = props => {
     const items = props.data;
     return items.map((item, index) => {
-      const { icon, title, description, titlemobile } = item;
+      const { icon, title, description, titlemobile, link } = item;
       return (
-        <div className='footer__item' key={index}>
+        <a href={link} className='footer__item' key={index}>
           <div className='footer__item-header'>
             <i className={`${icon} footer__item-icon`} />
           </div>
@@ -47,7 +51,7 @@ const Footer = props => {
               {description}
             </p>
           </div>
-        </div>
+        </a>
       );
     });
   };
@@ -57,6 +61,9 @@ const Footer = props => {
       <div className='footer_container container'>
         <FooterItems data={footerItems} />
       </div>
+      <h6 className='footer__made'>
+        Feito com <i class='far fa-heart' /> pela Quero Educação
+      </h6>
     </footer>
   );
 };
