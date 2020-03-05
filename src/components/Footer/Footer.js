@@ -62,7 +62,7 @@ const Footer = props => {
         <FooterItems data={footerItems} />
       </div>
       <h6 className='footer__made'>
-        Feito com <i class='far fa-heart' /> pela Quero Educação
+        Feito com <i className='far fa-heart' /> pela Quero Educação
       </h6>
     </footer>
   );

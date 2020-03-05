@@ -14,7 +14,7 @@ const Nav = props => {
   return (
     <nav className='nav'>
       <div className='nav__container container'>
-        <div className='nav__item'>
+        <div className='nav__item nav__item--active'>
           <a href='/'>Minha conta</a>
         </div>
         <div className={`nav__submenu ${openClass}`}>

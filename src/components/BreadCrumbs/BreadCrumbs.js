@@ -4,7 +4,7 @@ import './BreadCrumbs.scss';
 const BreadCrumbs = props => {
   return (
     <>
-      <section className='breadcrumbs'>
+      <section className='breadcrumbs container'>
         <ul className='breadcrumbs__container flex-center'>
           <li className='breadcrumbs__item  hidden-on-mobile'>
             <a href='/' className='breadcrumbs__link'>
