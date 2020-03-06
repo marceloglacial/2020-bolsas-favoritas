@@ -28,3 +28,32 @@
     display: none !important;
   }
 }
+
+// Effects
+.effect-cortain {
+  position: relative;
+  z-index: 0;
+}
+
+.effect-cortain:after {
+  content: '';
+  display: block;
+  height: 100px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+  width: 0%;
+  z-index: -1;
+}
+
+.effect-cortain:hover:after {
+  width: 100%;
+}
+
+.effect-cortain--blue {
+  &:hover:after {
+    background: var(--blue-dark);
+    color: var(--white);
+  }
+}
