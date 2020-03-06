@@ -23,9 +23,9 @@ const Header = props => {
           </a>
         </div>
         <a href='/' className='page-header__logo flex-center'>
-          <a href='/' className='page-header__title'>
+          <span className='page-header__title'>
             <h1>Quero Bolsa</h1>
-          </a>
+          </span>
         </a>
         <a href='/' className='page-header__user-info flex-center'>
           <div className='page-header__user-name'>
