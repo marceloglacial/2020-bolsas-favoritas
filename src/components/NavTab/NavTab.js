@@ -35,7 +35,7 @@ const NavTab = props => {
         <a
           href='/'
           onClick={e => handleClick(e, props)}
-          className={`effect-courtain effect-courtain--blue ${selected}`}
+          className={`navtab__item-link effect-courtain effect-courtain--blue ${selected}`}
         >
           {titleRender}
         </a>

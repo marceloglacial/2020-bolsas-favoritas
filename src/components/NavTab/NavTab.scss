@@ -1,3 +1,5 @@
+@import '../Styles/mixins';
+
 $border: solid 2px var(--blue-dark);
 
 .navtab {
@@ -20,18 +22,30 @@ $border: solid 2px var(--blue-dark);
 .navtab__item {
   border-right: $border;
   overflow: hidden;
+
+  @include media('<tablet') {
+    width: 100%;
+    border-right: none;
+    border-bottom: $border;
+  }
 }
 
 .navtab__item:last-child {
   border: none;
 }
 
-.navtab__item a {
+.navtab__item-link {
   display: inline-block;
   color: var(--blue-dark);
   font-weight: 700;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  width: 100%;
+
+  @include media('<tablet') {
+    text-align: center;
+    width: 100%;
+  }
 
   &.is-selected {
     background: var(--blue-dark);
