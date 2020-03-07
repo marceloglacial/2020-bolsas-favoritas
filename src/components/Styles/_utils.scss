@@ -30,12 +30,12 @@
 }
 
 // Effects
-.effect-cortain {
+.effect-courtain {
   position: relative;
   z-index: 0;
 }
 
-.effect-cortain:after {
+.effect-courtain:after {
   content: '';
   display: block;
   height: 100px;
@@ -47,11 +47,11 @@
   z-index: -1;
 }
 
-.effect-cortain:hover:after {
+.effect-courtain:hover:after {
   width: 100%;
 }
 
-.effect-cortain--blue {
+.effect-courtain--blue {
   &:hover:after {
     background: var(--blue-dark);
     color: var(--white);
