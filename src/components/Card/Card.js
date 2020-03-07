@@ -1,8 +1,8 @@
 import React from 'react';
+import Button from '../Button/Button';
 import './Card.scss';
 
 const Card = props => {
-  const info = props.info;
   const {
     enabled,
     full_price,
@@ -10,18 +10,16 @@ const Card = props => {
     start_date,
     university,
     course
-  } = info;
+  } = props.info;
 
-  const Button = props => {
-    if (enabled) {
-      return <button className='button button--primary'>Ver Oferta</button>;
-    } else {
-      return (
-        <button className='button button--disabled' disabled>
-          Indisponível
-        </button>
-      );
-    }
+  const buttonDeleteProps = {
+    title: 'Excluir',
+    type: 'muted'
+  };
+  const buttonShowProps = {
+    title: 'Ver Ofeta',
+    type: 'primary',
+    disabled: !enabled
   };
 
   return (
@@ -47,8 +45,8 @@ const Card = props => {
           </div>
         </div>
         <div className='card__actions'>
-          <button className='button button--muted'>Excluir</button>
-          <Button />
+          <Button {...buttonDeleteProps} />
+          <Button {...buttonShowProps} />
         </div>
       </div>
     </section>
