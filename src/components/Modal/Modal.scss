@@ -1,14 +1,77 @@
-.modal__container {
-  top: 0;
-  left: 0;
-  z-index: 999999;
-  width: 100%;
-  height: 100vh;
+@import '../Styles/mixins';
+
+.modal {
   background: var(--modal);
-  border: 0;
+  border: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999999;
 }
-.modal__card {
-  width: 200px;
-  height: 200px;
+
+// NOTE:
+// Not vertical centered.
+// Vertical view could be compromised
+.modal-container {
   background: var(--white);
+  margin: 6rem auto;
+  max-width: 768px;
+  padding: 2rem;
+  @include media('<desktop') {
+    max-width: 600px;
+  }
+}
+
+.modal-header__title,
+.modal-header__description {
+  margin: 0;
+  padding: 0 0 0.5rem 0;
+}
+
+.modal-filters {
+  display: flex;
+  @include media('<desktop') {
+    flex-wrap: wrap;
+  }
+}
+
+.modal-filter {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-top: 2rem;
+  @include media('<desktop') {
+    width: 100%;
+  }
+}
+
+@include media('>=desktop') {
+  .modal-filter:not(:nth-child(2n)) {
+    padding-right: 2rem;
+  }
+}
+
+.modal-filter__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+  @include media('<desktop') {
+    font-size: 0.8rem;
+  }
+}
+
+.modal-filter__options {
+  appearance: none;
+  background: url('../../static/images/chevron-down-solid.svg') no-repeat 95%
+    center var(--white);
+  background-size: 0.75rem;
+  border: solid 1px var(--black-soft);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  z-index: 0;
 }
