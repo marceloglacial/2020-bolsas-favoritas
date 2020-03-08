@@ -32,9 +32,7 @@
 
 .modal-filters {
   display: flex;
-  @include media('<desktop') {
-    flex-wrap: wrap;
-  }
+  flex-wrap: wrap;
 }
 
 .modal-filter {
@@ -62,7 +60,6 @@
     font-size: 0.8rem;
   }
 }
-
 .modal-filter__options {
   appearance: none;
   background: url('../../static/images/chevron-down-solid.svg') no-repeat 95%
@@ -74,4 +71,41 @@
   position: relative;
   width: 100%;
   z-index: 0;
+}
+
+.modal-filter__checkboxes {
+  display: flex;
+}
+
+.modal-filter__checkbox {
+  align-items: center;
+  display: flex;
+  padding-right: 2rem;
+
+  input {
+    position: relative;
+    height: 1.2rem;
+    margin: 2px 0.4rem 0 0;
+    width: 1.2rem;
+    z-index: 0;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      content: '';
+      height: 1.2rem;
+      width: 1.2rem;
+      border: solid 1px var(--black-soft);
+      border-radius: 0.25rem;
+      background: var(--white);
+      z-index: 5;
+    }
+    &:checked:after {
+      background: url('../../static/images/check-solid.svg') no-repeat center
+        center var(--blue);
+      background-size: 70%;
+    }
+  }
 }

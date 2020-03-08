@@ -30,6 +30,31 @@ const Modal = props => {
               <option>São José dos Campos</option>
             </select>
           </div>
+          <div className='modal-filter'>
+            <label className='modal-filter__title' htmlFor='type'>
+              Como você quer estudar?
+            </label>
+            <div className='modal-filter__checkboxes'>
+              <div className='modal-filter__checkbox'>
+                <input
+                  type='checkbox'
+                  htmlFor='type'
+                  name='presencial'
+                  id='presencial'
+                />
+                <label htmlFor='presencial'> Presencial</label>
+              </div>
+              <div className='modal-filter__checkbox'>
+                <input
+                  type='checkbox'
+                  htmlFor='type'
+                  name='distancia'
+                  id='distancia'
+                />
+                <label htmlFor='distancia'> A distância</label>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </dialog>
