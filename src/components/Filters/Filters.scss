@@ -1,11 +1,11 @@
 @import '../Styles/mixins';
 
-.modal-filters {
+.filters {
   display: flex;
   flex-wrap: wrap;
 }
 
-.modal-filter {
+.filter {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -16,12 +16,12 @@
 }
 
 @include media('>=desktop') {
-  .modal-filter:not(:nth-child(2n)) {
+  .filter:not(:nth-child(2n)) {
     padding-right: 2rem;
   }
 }
 
-.modal-filter__title {
+.filter__title {
   font-size: 0.9rem;
   font-weight: 700;
   margin: 0;
@@ -31,7 +31,7 @@
     font-size: 0.8rem;
   }
 }
-.modal-filter__options {
+.filter__options {
   appearance: none;
   background: url('../../static/images/chevron-down-solid.svg') no-repeat 95%
     center var(--white);
@@ -44,11 +44,11 @@
   z-index: 0;
 }
 
-.modal-filter__checkboxes {
+.filter__checkboxes {
   display: flex;
 }
 
-.modal-filter__checkbox {
+.filter__checkbox {
   align-items: center;
   display: flex;
   padding-right: 2rem;
@@ -80,42 +80,133 @@
     }
   }
 }
-.modal-filter__range {
-  // NOTE:
-  // Repeating code here.
-  // That's necessary as you can't comma-separate these type of selectors.
-  // Browsers will drop the entire selector if it doesn't understand a part of it.
-  // @see https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 
-  appearance: none;
+// Cross-Browser Range Input
+// @see https://github.com/darlanrod/input-range-sass
+// @see https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+$track-color: #18acc4 !default;
+$thumb-color: white !default;
+
+$thumb-radius: 12px !default;
+$thumb-height: 24px !default;
+$thumb-width: 24px !default;
+$thumb-border-width: 2px !default;
+$thumb-border-color: #18acc4 !default;
+
+$track-width: 100% !default;
+$track-height: 3px !default;
+$track-border-width: 0px !default;
+$track-border-color: #cfd8dc !default;
+
+$track-radius: 5px !default;
+$contrast: 5% !default;
+
+$ie-bottom-track-color: darken($track-color, $contrast) !default;
+
+@mixin track {
+  cursor: default;
+  height: $track-height;
+  transition: all 0.2s ease;
+  width: $track-width;
+}
+
+@mixin thumb {
+  background: $thumb-color;
+  border: $thumb-border-width solid $thumb-border-color;
+  border-radius: $thumb-radius;
+  box-sizing: border-box;
+  cursor: default;
+  height: $thumb-height;
+  width: $thumb-width;
+}
+
+[type='range'] {
+  -webkit-appearance: none;
   background: transparent;
-  height: 2rem;
-  width: 100%;
+  margin: $thumb-height / 2 0;
+  width: $track-width;
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &:focus {
+    outline: 0;
+
+    &::-webkit-slider-runnable-track {
+      background: lighten($track-color, $contrast);
+    }
+
+    &::-ms-fill-lower {
+      background: $track-color;
+    }
+
+    &::-ms-fill-upper {
+      background: lighten($track-color, $contrast);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+  }
 
   &::-webkit-slider-thumb {
+    @include thumb;
     -webkit-appearance: none;
+    margin-top: (
+      (-$track-border-width * 2 + $track-height) / 2 - $thumb-height / 2
+    );
+  }
+
+  &::-moz-range-track {
+    @include track;
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+    height: $track-height / 2;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
   }
 
   &::-ms-track {
-    width: 100%;
-    cursor: pointer;
+    @include track;
     background: transparent;
     border-color: transparent;
+    border-width: ($thumb-height / 2) 0;
     color: transparent;
   }
-  &::-webkit-slider-thumb {
-    border: solid 1px var(--blue);
-    height: 1rem;
-    width: 1rem;
+
+  &::-ms-fill-lower {
+    background: $ie-bottom-track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
   }
-  &::-moz-range-thumb {
-    border: solid 1px var(--blue);
-    height: 1rem;
-    width: 1rem;
+
+  &::-ms-fill-upper {
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
   }
+
   &::-ms-thumb {
-    border: solid 1px var(--blue);
-    height: 1rem;
-    width: 1rem;
+    @include thumb;
+    margin-top: $track-height / 4;
+  }
+
+  &:disabled {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb,
+    &::-webkit-slider-runnable-track,
+    &::-ms-fill-lower,
+    &::-ms-fill-upper {
+      cursor: not-allowed;
+    }
   }
 }

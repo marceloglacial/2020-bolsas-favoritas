@@ -9,7 +9,7 @@ import Filters from '../Filters/Filters';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggleModal = () => setIsOpen(!isOpen);
 
   const modalProps = {
