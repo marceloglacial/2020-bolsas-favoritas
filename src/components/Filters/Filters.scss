@@ -97,7 +97,7 @@ $thumb-border-color: #18acc4 !default;
 $track-width: 100% !default;
 $track-height: 3px !default;
 $track-border-width: 0px !default;
-$track-border-color: #cfd8dc !default;
+$track-border-color: transparent !default;
 
 $track-radius: 5px !default;
 $contrast: 5% !default;
@@ -121,7 +121,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
   width: $thumb-width;
 }
 
-[type='range'] {
+.filter__range {
   -webkit-appearance: none;
   background: transparent;
   margin: $thumb-height / 2 0;

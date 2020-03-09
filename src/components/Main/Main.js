@@ -6,6 +6,7 @@ import ContentHeader from '../ContentHeader/ContentHeader';
 import NavTab from '../NavTab/NavTab';
 import Modal from '../Modal/Modal';
 import Filters from '../Filters/Filters';
+import ResultsGrid from '../ResultsGrid/ResultsGrid';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
@@ -32,6 +33,7 @@ const Main = props => {
         <CardGrid {...cardGridProps} {...props} />
         <Modal {...modalProps}>
           <Filters {...props} />
+          <ResultsGrid {...props} />
         </Modal>
       </main>
     </>
