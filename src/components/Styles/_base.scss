@@ -26,3 +26,32 @@ body {
   margin: 0;
   padding: 0;
 }
+
+input[type='checkbox'] {
+  appearance: none;
+  border: none;
+  height: 1.2rem;
+  margin-right: 0.4rem;
+  position: relative;
+  width: 1.2rem;
+  z-index: 0;
+
+  &:after {
+    background: var(--white);
+    border: solid 1px var(--black-soft);
+    border-radius: 0.25rem;
+    content: '';
+    display: block;
+    height: 1.2rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1.2rem;
+    z-index: 5;
+  }
+  &:checked:after {
+    background: url('../../static/images/check-solid.svg') no-repeat center
+      center var(--blue);
+    background-size: 70%;
+  }
+}

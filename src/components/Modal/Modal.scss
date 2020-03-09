@@ -7,13 +7,11 @@
   left: 0;
   position: fixed;
   top: 0;
+  overflow: scroll;
   width: 100%;
   z-index: 99999999;
 }
 
-// NOTE:
-// Not vertical centered.
-// Vertical view could be compromised
 .modal-container {
   background: var(--white);
   margin: 6rem auto;
@@ -22,6 +20,7 @@
   position: relative;
   @include media('<desktop') {
     max-width: 600px;
+    margin: 4rem auto;
   }
 }
 
