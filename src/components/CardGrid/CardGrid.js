@@ -5,7 +5,7 @@ import './CardGrid.scss';
 import CardAdd from '../Card/CardAdd';
 
 const CardGrid = props => {
-  const { data, isLoading, isError } = props;
+  const { data, isLoading, isError, toggleModal } = props;
 
   // Handle filter
   const dataFiltered =
@@ -43,7 +43,7 @@ const CardGrid = props => {
     } else {
       return (
         <Grid>
-          <CardAdd {...props} />
+          <CardAdd toggleModal={toggleModal} />
           <Cards data={dataFiltered} />
         </Grid>
       );
