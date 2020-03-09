@@ -1,7 +1,8 @@
 @import '../Styles/mixins';
 
-.breadcrumbs__container {
+.breadcrumbs .breadcrumbs__container {
   color: var(--black);
+  justify-content: flex-start;
   list-style: none;
   padding: 1rem 0;
 }
