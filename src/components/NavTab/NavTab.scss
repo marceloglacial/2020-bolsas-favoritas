@@ -7,6 +7,9 @@ $border: solid 2px var(--blue-dark);
   display: flex;
   padding-bottom: 3rem;
   width: 100%;
+  @include media('<tablet') {
+    padding-bottom: 1rem;
+  }
 }
 
 .navtab__container {
