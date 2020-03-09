@@ -19,6 +19,7 @@
   margin: 6rem auto;
   max-width: 768px;
   padding: 2rem;
+  position: relative;
   @include media('<desktop') {
     max-width: 600px;
   }
@@ -30,82 +31,31 @@
   padding: 0 0 0.5rem 0;
 }
 
-.modal-filters {
-  display: flex;
-  flex-wrap: wrap;
+.modal__close {
+  position: absolute;
+  right: 0;
+  top: -3rem;
+  z-index: 20;
 }
-
-.modal-filter {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding-top: 2rem;
-  @include media('<desktop') {
-    width: 100%;
-  }
-}
-
-@include media('>=desktop') {
-  .modal-filter:not(:nth-child(2n)) {
-    padding-right: 2rem;
-  }
-}
-
-.modal-filter__title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding-bottom: 0.5rem;
-  @include media('<desktop') {
-    font-size: 0.8rem;
-  }
-}
-.modal-filter__options {
+.modal__close-button {
   appearance: none;
-  background: url('../../static/images/chevron-down-solid.svg') no-repeat 95%
-    center var(--white);
-  background-size: 0.75rem;
-  border: solid 1px var(--black-soft);
-  border-radius: 0.25rem;
-  padding: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 0;
+  height: 2rem;
   position: relative;
-  width: 100%;
-  z-index: 0;
-}
+  width: 2rem;
 
-.modal-filter__checkboxes {
-  display: flex;
-}
+  &::after {
+    position: absolute;
+    color: var(--white);
+    content: 'X';
+    font-size: 2rem;
+    top: 0;
+    right: 0;
+  }
 
-.modal-filter__checkbox {
-  align-items: center;
-  display: flex;
-  padding-right: 2rem;
-
-  input {
-    position: relative;
-    height: 1.2rem;
-    margin: 2px 0.4rem 0 0;
-    width: 1.2rem;
-    z-index: 0;
-
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      content: '';
-      height: 1.2rem;
-      width: 1.2rem;
-      border: solid 1px var(--black-soft);
-      border-radius: 0.25rem;
-      background: var(--white);
-      z-index: 5;
-    }
-    &:checked:after {
-      background: url('../../static/images/check-solid.svg') no-repeat center
-        center var(--blue);
-      background-size: 70%;
-    }
+  &:hover {
+    cursor: pointer;
   }
 }

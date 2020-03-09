@@ -5,18 +5,34 @@ import './Main.scss';
 import ContentHeader from '../ContentHeader/ContentHeader';
 import NavTab from '../NavTab/NavTab';
 import Modal from '../Modal/Modal';
+import Filters from '../Filters/Filters';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => setIsOpen(!isOpen);
+
+  const modalProps = {
+    isOpen,
+    toggleModal
+  };
+
+  const cardGridProps = {
+    filter: cardGridFilter,
+    setCardGridFilter,
+    toggleModal
+  };
 
   return (
     <>
       <main className='main'>
         <BreadCrumbs />
         <ContentHeader />
-        <NavTab setCardGridFilter={setCardGridFilter} {...props} />
-        <CardGrid filter={cardGridFilter} {...props} />
-        <Modal {...props} />
+        <NavTab {...cardGridProps} {...props} />
+        <CardGrid {...cardGridProps} {...props} />
+        <Modal {...modalProps}>
+          <Filters {...props} />
+        </Modal>
       </main>
     </>
   );
