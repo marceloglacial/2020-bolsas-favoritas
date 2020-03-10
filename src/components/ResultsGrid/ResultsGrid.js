@@ -3,9 +3,12 @@ import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
 const ResultsGrid = props => {
+  const { toggleModal } = props;
+
   const buttonCancelProps = {
     title: 'Cancelar',
-    type: 'muted'
+    type: 'muted',
+    onClick: toggleModal
   };
   const buttonAddProps = {
     title: 'Adicionar bolsa(s)',

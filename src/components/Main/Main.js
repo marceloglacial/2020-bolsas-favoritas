@@ -24,6 +24,11 @@ const Main = props => {
     toggleModal
   };
 
+  const resultProps = {
+    modalIsOpen,
+    toggleModal
+  };
+
   return (
     <>
       <main className='main'>
@@ -33,7 +38,7 @@ const Main = props => {
         <CardGrid {...cardGridProps} {...props} />
         <Modal {...modalProps}>
           <Filters {...props} />
-          <ResultsGrid {...props} />
+          <ResultsGrid {...resultProps} {...props} />
         </Modal>
       </main>
     </>

@@ -3,19 +3,22 @@
 .modal {
   background: var(--modal);
   border: none;
-  height: 100vh;
+  display: block;
+  height: 0;
   left: 0;
   position: fixed;
   top: 0;
   opacity: 0;
-  overflow: scroll;
+  overflow: hidden;
   transition: opacity 0.2s ease-in-out;
   width: 100%;
   z-index: -1;
 
   &.is-open {
     display: block;
+    height: 100vh;
     opacity: 1;
+    overflow: scroll;
     z-index: 99999999;
   }
 }
