@@ -30,6 +30,15 @@
   @include media('<desktop') {
     font-size: 0.8rem;
   }
+
+  &--type {
+    padding-bottom: 2rem;
+  }
+
+  &--price {
+    margin: 0;
+    padding: 0;
+  }
 }
 .filter__options {
   appearance: none;

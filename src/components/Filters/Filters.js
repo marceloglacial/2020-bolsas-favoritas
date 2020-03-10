@@ -23,7 +23,7 @@ const Filters = props => {
         </select>
       </div>
       <div className='filter'>
-        <h4 className='filter__title' htmlFor='type'>
+        <h4 className='filter__title filter__title--type' htmlFor='type'>
           Como você quer estudar?
         </h4>
         <div className='filter__checkboxes'>
@@ -48,9 +48,10 @@ const Filters = props => {
         </div>
       </div>
       <div className='filter'>
-        <h4 className='filter__title' htmlFor='type'>
+        <h4 className='filter__title filter__title--price' htmlFor='type'>
           Até quanto pode pagar?
         </h4>
+        <p>R$ 10.000</p>
         <input
           className='filter__range'
           type='range'

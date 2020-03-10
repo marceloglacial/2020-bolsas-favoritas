@@ -10,11 +10,11 @@ import ResultsGrid from '../ResultsGrid/ResultsGrid';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
-  const [isOpen, setIsOpen] = useState(true);
-  const toggleModal = () => setIsOpen(!isOpen);
+  const [modalIsOpen, setmodalIsOpen] = useState(false);
+  const toggleModal = () => setmodalIsOpen(!modalIsOpen);
 
   const modalProps = {
-    isOpen,
+    modalIsOpen,
     toggleModal
   };
 

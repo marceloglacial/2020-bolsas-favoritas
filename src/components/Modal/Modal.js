@@ -2,10 +2,12 @@ import React from 'react';
 import './Modal.scss';
 
 const Modal = props => {
-  const { isOpen, toggleModal } = props;
+  const { modalIsOpen, toggleModal } = props;
+  const modalState = modalIsOpen ? 'is-open' : '';
+
   return (
-    <dialog className='modal' open={isOpen}>
-      <section className='modal-container'>
+    <div className={`modal ${modalState}`}>
+      <div className='modal-container'>
         <div className='modal__close'>
           <button className='modal__close-button' onClick={toggleModal}>
             Close
@@ -18,8 +20,8 @@ const Modal = props => {
           </p>
         </section>
         <section className='modal-content'>{props.children}</section>
-      </section>
-    </dialog>
+      </div>
+    </div>
   );
 };
 export default Modal;
