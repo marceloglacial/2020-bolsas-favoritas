@@ -32,7 +32,8 @@ const Index = props => {
   }, [url]);
 
   const dataProps = {
-    data: data,
+    data,
+    setData,
     isLoading: isLoading,
     isError
   };

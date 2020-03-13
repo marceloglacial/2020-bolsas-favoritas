@@ -9,19 +9,26 @@ const Card = props => {
     price_with_discount,
     start_date,
     university,
-    course
-  } = props.info;
+    course,
+    data,
+    setData,
+    id
+  } = props;
+
+  const removeFromCart = () => {
+    setData(data.filter(item => data.indexOf(item) !== id));
+  };
 
   const buttonDeleteProps = {
     title: 'Excluir',
-    type: 'muted'
+    type: 'muted',
+    onClick: removeFromCart
   };
   const buttonShowProps = {
     title: 'Ver Ofeta',
     type: 'primary',
     disabled: !enabled
   };
-
   return (
     <section className='card'>
       <figure className='card__logo'>

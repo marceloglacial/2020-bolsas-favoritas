@@ -2,6 +2,27 @@ import React from 'react';
 import './Filters.scss';
 
 const Filters = props => {
+  const { data } = props;
+  // Cities
+
+  const Cities = () => {
+    const all = [...new Set(data.map(item => item.campus.city))].sort();
+    return all.map((item, index) => (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    ));
+  };
+
+  const Courses = () => {
+    const all = [...new Set(data.map(item => item.course.name))].sort();
+    return all.map((item, index) => (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    ));
+  };
+
   return (
     <div className='filters'>
       <div className='filter'>
@@ -9,8 +30,7 @@ const Filters = props => {
           Selecione sua cidade
         </label>
         <select className='filter__options' id='city' name='city'>
-          <option>São José dos Campos</option>
-          <option>São José dos Campos</option>
+          <Cities />
         </select>
       </div>
       <div className='filter'>
@@ -18,8 +38,7 @@ const Filters = props => {
           Selecione o curso de sua preferência
         </label>
         <select className='filter__options' id='course' name='course'>
-          <option>Arquitetura e Urbanismo</option>
-          <option>São José dos Campos</option>
+          <Courses />
         </select>
       </div>
       <div className='filter'>

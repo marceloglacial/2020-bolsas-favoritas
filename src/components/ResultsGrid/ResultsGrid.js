@@ -3,8 +3,15 @@ import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
 const ResultsGrid = props => {
-  const { toggleModal } = props;
+  const { data, toggleModal, setItemsSelected } = props;
 
+  const addItems = () => {
+    setItemsSelected(true);
+    toggleModal();
+  };
+  const selectCard = (e, checked) => (data[e.target.id].checked = !checked);
+
+  // Buttons
   const buttonCancelProps = {
     title: 'Cancelar',
     type: 'muted',
@@ -12,7 +19,54 @@ const ResultsGrid = props => {
   };
   const buttonAddProps = {
     title: 'Adicionar bolsa(s)',
-    type: 'primary'
+    type: 'primary',
+    onClick: addItems
+  };
+
+  const Items = () => {
+    return data.map((item, index) => {
+      const {
+        enabled,
+        price_with_discount,
+        discount_percentage,
+        university,
+        course,
+        checked
+      } = item;
+
+      if (!enabled) return false;
+      return (
+        <div className='results-list__item' key={index}>
+          <div className='results-list__checkbox'>
+            <input
+              type='checkbox'
+              htmlFor='type'
+              id={index}
+              onChange={e => selectCard(e, checked)}
+              checked={checked}
+            />
+          </div>
+          <div className='results-list__image'>
+            <img src={university.logo_url} alt={university.name} />
+          </div>
+          <div className='results-list__course'>
+            <h3 className='results-list__course--name'>{course.name}</h3>
+            <p className='results-list__course--type'>{course.level}</p>
+          </div>
+          <div className='results-list__price'>
+            <p>
+              Bolsa de
+              <strong className='results-list__price--discount'>
+                {discount_percentage}%
+              </strong>
+            </p>
+            <p className='results-list__price--full'>
+              R$ {price_with_discount}/mês
+            </p>
+          </div>
+        </div>
+      );
+    });
   };
 
   return (
@@ -41,61 +95,7 @@ const ResultsGrid = props => {
         </div>
       </div>
       <div className='results-list'>
-        <div className='results-list__item'>
-          <div className='results-list__checkbox'>
-            <input
-              type='checkbox'
-              htmlFor='type'
-              name='presencial'
-              id='presencial'
-            />
-          </div>
-          <div className='results-list__image'>
-            <img
-              src='https://www.tryimg.com/u/2019/04/16/unip.png'
-              alt='name'
-            />
-          </div>
-          <div className='results-list__course'>
-            <h3 className='results-list__course--name'>Administração</h3>
-            <p className='results-list__course--type'>Bacharelado</p>
-          </div>
-          <div className='results-list__price'>
-            <p>
-              Bolsa de
-              <strong className='results-list__price--discount'>50%</strong>
-            </p>
-            <p className='results-list__price--full'>R$ 374/mês</p>
-          </div>
-        </div>
-
-        <div className='results-list__item'>
-          <div className='results-list__checkbox'>
-            <input
-              type='checkbox'
-              htmlFor='type'
-              name='presencial'
-              id='presencial'
-            />
-          </div>
-          <div className='results-list__image'>
-            <img
-              src='https://www.tryimg.com/u/2019/04/16/unip.png'
-              alt='name'
-            />
-          </div>
-          <div className='results-list__course'>
-            <h3 className='results-list__course--name'>Administração</h3>
-            <p className='results-list__course--type'>Bacharelado</p>
-          </div>
-          <div className='results-list__price'>
-            <p>
-              Bolsa de
-              <strong className='results-list__price--discount'>50%</strong>
-            </p>
-            <p className='results-list__price--full'>R$ 374/mês</p>
-          </div>
-        </div>
+        <Items />
       </div>
       <div className='results-actions'>
         <Button {...buttonCancelProps} />

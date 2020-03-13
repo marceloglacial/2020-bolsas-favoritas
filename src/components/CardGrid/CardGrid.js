@@ -5,24 +5,21 @@ import './CardGrid.scss';
 import CardAdd from '../Card/CardAdd';
 
 const CardGrid = props => {
-  const { data, isLoading, isError, toggleModal } = props;
-
-  // Handle filter
-  const dataFiltered =
-    props.filter !== 'Todos os Semestres'
-      ? data.filter(item => item.enrollment_semester === props.filter)
-      : data;
+  const { data, setData, isLoading, isError, toggleModal } = props;
 
   // Render Grid
   const Grid = props => {
     return <section className='cardgrid container'>{props.children}</section>;
   };
 
-  // Render Cards
-  const Cards = props => {
-    const cards = props.data;
-    return cards.map((card, index) => {
-      return <Card info={card} key={index} />;
+  // Cards
+  const Cards = () => {
+    return data.map((card, index) => {
+      return card.checked ? (
+        <Card id={index} data={data} setData={setData} {...card} key={index} />
+      ) : (
+        false
+      );
     });
   };
 
@@ -41,10 +38,14 @@ const CardGrid = props => {
         </Grid>
       );
     } else {
+      const cardsProps = {
+        data,
+        setData
+      };
       return (
         <Grid>
           <CardAdd toggleModal={toggleModal} />
-          <Cards data={dataFiltered} />
+          <Cards {...cardsProps} />
         </Grid>
       );
     }

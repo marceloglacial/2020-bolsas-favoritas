@@ -3,7 +3,7 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
 import './Main.scss';
 import ContentHeader from '../ContentHeader/ContentHeader';
-import NavTab from '../NavTab/NavTab';
+// import NavTab from '../NavTab/NavTab';
 import Modal from '../Modal/Modal';
 import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
@@ -11,6 +11,7 @@ import ResultsGrid from '../ResultsGrid/ResultsGrid';
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
   const [modalIsOpen, setmodalIsOpen] = useState(false);
+  const [itemsSelected, setItemsSelected] = useState(false);
   const toggleModal = () => setmodalIsOpen(!modalIsOpen);
 
   const modalProps = {
@@ -19,14 +20,17 @@ const Main = props => {
   };
 
   const cardGridProps = {
-    filter: cardGridFilter,
+    cardGridFilter,
     setCardGridFilter,
-    toggleModal
+    toggleModal,
+    itemsSelected
   };
 
   const resultProps = {
     modalIsOpen,
-    toggleModal
+    toggleModal,
+    itemsSelected,
+    setItemsSelected
   };
 
   return (
@@ -34,7 +38,7 @@ const Main = props => {
       <main className='main'>
         <BreadCrumbs />
         <ContentHeader />
-        <NavTab {...cardGridProps} {...props} />
+        {/* <NavTab {...cardGridProps} {...props} /> */}
         <CardGrid {...cardGridProps} {...props} />
         <Modal {...modalProps}>
           <Filters {...props} />

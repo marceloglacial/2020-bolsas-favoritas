@@ -54,4 +54,7 @@ input[type='checkbox'] {
       center var(--blue);
     background-size: 70%;
   }
+  &:focus {
+    outline: solid 1px var(--blue);
+  }
 }

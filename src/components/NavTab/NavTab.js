@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import './NavTab.scss';
 const NavTab = props => {
-  const { setCardGridFilter, data } = props;
+  const { setCardGridFilter } = props;
+
+  // Set Active Item States
+  const [activeItem, setActiveItem] = useState({ 0: true });
+
+  const data = props.data;
+  if (!data) return false;
 
   // Get unique semesters
   const semesters = [
     ...new Set(data.map((item, index) => item.enrollment_semester))
   ].sort();
   semesters.unshift('Todos os Semestres');
-
-  // Set Active Item States
-  const initialState = { 0: true };
-  const [activeItem, setActiveItem] = useState(initialState);
 
   // Handle Click
   const handleClick = (e, props) => {
