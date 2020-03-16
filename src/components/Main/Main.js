@@ -10,7 +10,7 @@ import './Main.scss';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
+  const [modalIsOpen, setmodalIsOpen] = useState(true);
   const toggleModal = () => setmodalIsOpen(!modalIsOpen);
 
   // Cart
@@ -43,7 +43,11 @@ const Main = props => {
   };
   const resultProps = {
     modalIsOpen,
-    toggleModal
+    toggleModal,
+    cart,
+    addToCart,
+    removeFromCart,
+    database
   };
 
   return (
@@ -55,7 +59,7 @@ const Main = props => {
         <CardGrid {...cardGridProps} />
         <Modal {...modalProps}>
           <Filters {...props} />
-          <ResultsGrid {...resultProps} {...props} />
+          <ResultsGrid {...resultProps} />
         </Modal>
       </main>
     </>

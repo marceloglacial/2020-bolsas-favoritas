@@ -3,8 +3,6 @@ import Button from '../Button/Button';
 import './Card.scss';
 
 const Card = props => {
-  console.log(props);
-
   const {
     enabled,
     full_price,
@@ -16,10 +14,7 @@ const Card = props => {
     removeFromCart
   } = props;
 
-  const remove = () => {
-    console.log(id);
-    removeFromCart(id);
-  };
+  const remove = () => removeFromCart(id);
 
   const buttonDeleteProps = {
     title: 'Excluir',
