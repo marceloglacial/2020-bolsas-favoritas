@@ -19,10 +19,7 @@ const Main = props => {
     return item;
   });
   const [cart, setCart] = useState([]);
-  const addToCart = id => {
-    const result = database.find(item => item.id === id);
-    setCart([...cart, result]);
-  };
+  const addToCart = items => setCart(items);
   const removeFromCart = id => {
     const result = cart.filter(item => item.id !== id);
     setCart(result);

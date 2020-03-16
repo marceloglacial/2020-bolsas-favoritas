@@ -10,6 +10,7 @@ const ResultsGrid = props => {
   const addItemsToCart = () => {
     if (hasItems) {
       console.log('added');
+      addToCart(selectedItems);
       toggleModal();
     } else {
       return false;
@@ -27,7 +28,6 @@ const ResultsGrid = props => {
     type: hasItems ? 'primary' : 'disabled',
     onClick: addItemsToCart
   };
-  console.log(selectedItems);
 
   const Items = () => {
     return database.map((item, index) => {
