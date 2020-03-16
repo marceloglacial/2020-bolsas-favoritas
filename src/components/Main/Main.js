@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
-import './Main.scss';
 import ContentHeader from '../ContentHeader/ContentHeader';
 // import NavTab from '../NavTab/NavTab';
 import Modal from '../Modal/Modal';
 import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
+import './Main.scss';
 
 const Main = props => {
   const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
   const [modalIsOpen, setmodalIsOpen] = useState(false);
-  const [itemsSelected, setItemsSelected] = useState(false);
   const toggleModal = () => setmodalIsOpen(!modalIsOpen);
 
-  const modalProps = {
-    modalIsOpen,
-    toggleModal
+  // Cart
+  const database = props.data.map((item, index) => {
+    item.id = index;
+    return item;
+  });
+  const [cart, setCart] = useState([]);
+  const addToCart = id => {
+    const result = database.find(item => item.id === id);
+    setCart([...cart, result]);
   };
-
+  const removeFromCart = id => {
+    const result = cart.filter(item => item.id !== id);
+    setCart(result);
+  };
   const cardGridProps = {
     cardGridFilter,
     setCardGridFilter,
     toggleModal,
-    itemsSelected
+    cart,
+    addToCart,
+    removeFromCart
   };
 
+  // Modal
+  const modalProps = {
+    modalIsOpen,
+    toggleModal
+  };
   const resultProps = {
     modalIsOpen,
-    toggleModal,
-    itemsSelected,
-    setItemsSelected
+    toggleModal
   };
 
   return (
@@ -39,7 +52,7 @@ const Main = props => {
         <BreadCrumbs />
         <ContentHeader />
         {/* <NavTab {...cardGridProps} {...props} /> */}
-        <CardGrid {...cardGridProps} {...props} />
+        <CardGrid {...cardGridProps} />
         <Modal {...modalProps}>
           <Filters {...props} />
           <ResultsGrid {...resultProps} {...props} />

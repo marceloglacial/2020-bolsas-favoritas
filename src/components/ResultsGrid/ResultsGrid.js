@@ -3,24 +3,17 @@ import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
 const ResultsGrid = props => {
-  const { data, toggleModal, setItemsSelected } = props;
-
-  const addItems = () => {
-    setItemsSelected(true);
-    toggleModal();
-  };
-  const selectCard = (e, checked) => (data[e.target.id].checked = !checked);
+  const { data, setData, toggleModal } = props;
 
   // Buttons
   const buttonCancelProps = {
     title: 'Cancelar',
-    type: 'muted',
-    onClick: toggleModal
+    type: 'muted'
   };
   const buttonAddProps = {
     title: 'Adicionar bolsa(s)',
     type: 'primary',
-    onClick: addItems
+    onClick: toggleModal
   };
 
   const Items = () => {
@@ -34,6 +27,13 @@ const ResultsGrid = props => {
         checked
       } = item;
 
+      const handleSelect = (e, index) => {
+        const checked = e.target.checked;
+        const all = data;
+        all[index].checked = checked;
+        setData(all);
+      };
+
       if (!enabled) return false;
       return (
         <div className='results-list__item' key={index}>
@@ -42,8 +42,8 @@ const ResultsGrid = props => {
               type='checkbox'
               htmlFor='type'
               id={index}
-              onChange={e => selectCard(e, checked)}
               checked={checked}
+              onChange={e => handleSelect(e, index)}
             />
           </div>
           <div className='results-list__image'>

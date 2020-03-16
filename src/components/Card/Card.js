@@ -3,6 +3,8 @@ import Button from '../Button/Button';
 import './Card.scss';
 
 const Card = props => {
+  console.log(props);
+
   const {
     enabled,
     full_price,
@@ -10,25 +12,26 @@ const Card = props => {
     start_date,
     university,
     course,
-    data,
-    setData,
-    id
+    id,
+    removeFromCart
   } = props;
 
-  const removeFromCart = () => {
-    setData(data.filter(item => data.indexOf(item) !== id));
+  const remove = () => {
+    console.log(id);
+    removeFromCart(id);
   };
 
   const buttonDeleteProps = {
     title: 'Excluir',
     type: 'muted',
-    onClick: removeFromCart
+    onClick: remove
   };
   const buttonShowProps = {
     title: 'Ver Ofeta',
     type: 'primary',
     disabled: !enabled
   };
+
   return (
     <section className='card'>
       <figure className='card__logo'>

@@ -5,7 +5,7 @@ import './CardGrid.scss';
 import CardAdd from '../Card/CardAdd';
 
 const CardGrid = props => {
-  const { data, setData, isLoading, isError, toggleModal } = props;
+  const { isLoading, isError, toggleModal, cart, removeFromCart } = props;
 
   // Render Grid
   const Grid = props => {
@@ -14,12 +14,8 @@ const CardGrid = props => {
 
   // Cards
   const Cards = () => {
-    return data.map((card, index) => {
-      return card.checked ? (
-        <Card id={index} data={data} setData={setData} {...card} key={index} />
-      ) : (
-        false
-      );
+    return cart.map((card, index) => {
+      return <Card key={index} removeFromCart={removeFromCart} {...card} />;
     });
   };
 
@@ -38,18 +34,14 @@ const CardGrid = props => {
         </Grid>
       );
     } else {
-      const cardsProps = {
-        data,
-        setData
-      };
       return (
         <Grid>
-          <CardAdd toggleModal={toggleModal} />
-          <Cards {...cardsProps} />
+          <CardAdd toggleModal={toggleModal} {...props} />
+          <Cards />
         </Grid>
       );
     }
   };
-  return <Content />;
+  return <Content {...props} />;
 };
 export default CardGrid;
