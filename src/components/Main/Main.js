@@ -47,6 +47,14 @@ const Main = props => {
     database
   };
 
+  // Filter
+  const filterProps = {
+    cart,
+    addToCart,
+    removeFromCart,
+    database
+  };
+
   return (
     <>
       <main className='main'>
@@ -55,7 +63,7 @@ const Main = props => {
         {/* <NavTab {...cardGridProps} {...props} /> */}
         <CardGrid {...cardGridProps} />
         <Modal {...modalProps}>
-          <Filters {...props} />
+          <Filters {...filterProps} />
           <ResultsGrid {...resultProps} />
         </Modal>
       </main>

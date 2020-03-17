@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
 const ResultsGrid = props => {
-  const { database, toggleModal, cart, addToCart, removeFromCart } = props;
+  const { database, toggleModal, addToCart, removeFromCart } = props;
   const [selectedItems, setSelectedItems] = useState([]);
   const hasItems = selectedItems.length > 0;
 

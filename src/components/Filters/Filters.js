@@ -2,11 +2,10 @@ import React from 'react';
 import './Filters.scss';
 
 const Filters = props => {
-  const { data } = props;
-  // Cities
+  const { database } = props;
 
   const Cities = () => {
-    const all = [...new Set(data.map(item => item.campus.city))].sort();
+    const all = [...new Set(database.map(item => item.campus.city))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
@@ -15,7 +14,7 @@ const Filters = props => {
   };
 
   const Courses = () => {
-    const all = [...new Set(data.map(item => item.course.name))].sort();
+    const all = [...new Set(database.map(item => item.course.name))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
