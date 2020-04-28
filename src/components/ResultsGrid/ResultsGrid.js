@@ -3,8 +3,8 @@ import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
 const ResultsGrid = (props) => {
-  const { data, toggleModal, addToCart } = props;
-  const hasItems = data.find((item) => item.isSelected);
+  const { cart, toggleModal, addToCart, handleSelectedItem } = props;
+  const hasItems = cart.find((item) => item.isSelected);
 
   // Buttons
   const buttonCancelProps = {
@@ -15,11 +15,11 @@ const ResultsGrid = (props) => {
   const buttonAddProps = {
     title: 'Adicionar bolsa(s)',
     type: hasItems ? 'primary' : 'disabled',
-    onClick: hasItems ? toggleModal : undefined,
+    onClick: hasItems ? addToCart : undefined,
   };
 
   const Items = () => {
-    return data.map((item, index) => {
+    return cart.map((item, index) => {
       const {
         id,
         enabled,
@@ -39,7 +39,7 @@ const ResultsGrid = (props) => {
               htmlFor='type'
               id={id}
               defaultChecked={isSelected}
-              onChange={(e) => addToCart(e)}
+              onChange={(e) => handleSelectedItem(e)}
             />
           </div>
           <div className='results-list__image'>

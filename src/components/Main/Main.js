@@ -8,13 +8,18 @@ import './Main.scss';
 
 const Main = (props) => {
   const { isLoading, isError, data, setData } = props;
-  const [modalIsOpen, setModalIsOpen] = useState(true);
-  const toggleModal = () => setModalIsOpen(!modalIsOpen);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  const nestedCopy = (array) => {
+    return JSON.parse(JSON.stringify(array));
+  };
 
   // Close Modal on Esc
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.keyCode === 27) return toggleModal();
+      if (e.keyCode === 27) return setModalIsOpen(false);
     };
     window.addEventListener('keydown', handleEsc);
     return () => {
@@ -24,31 +29,43 @@ const Main = (props) => {
 
   // Remove From Cart
   const removeFromCart = (id) => {
-    const items = data.slice();
+    const items = [...data];
     items.map((item) =>
       item.id === parseInt(id) ? (item.isSelected = false) : item
     );
     return setData(items);
   };
+  // Open Cart
+  const openCart = () => {
+    setModalIsOpen(true);
+    setCart(nestedCopy(data));
+  };
 
   // Add to Cart
-  const addToCart = (e) => {
+  const addToCart = () => {
+    setModalIsOpen(false);
+    setData(cart);
+  };
+  const handleSelectedItem = (e) => {
     const id = parseInt(e.target.id);
-    const items = data.slice();
+    const items = [...cart];
     items.map((item) =>
       item.id === id ? (item.isSelected = !item.isSelected) : item
     );
-    return setData(items);
+    return setCart(items);
   };
 
   // Global Props
   const globalProps = {
     data,
     setData,
+    openCart,
     addToCart,
+    handleSelectedItem,
     removeFromCart,
     modalIsOpen,
     toggleModal,
+    cart,
   };
 
   // Loading States

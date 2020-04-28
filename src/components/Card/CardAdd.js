@@ -4,7 +4,7 @@ import './Card.scss';
 const CardAdd = (props) => {
   const addCourse = (e) => {
     e.preventDefault();
-    props.toggleModal();
+    props.openCart();
   };
 
   return (
