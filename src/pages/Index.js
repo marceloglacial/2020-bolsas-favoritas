@@ -6,22 +6,23 @@ import Main from '../components/Main/Main';
 import '../components/Styles/_base.scss';
 import Footer from '../components/Footer/Footer';
 
-const Index = props => {
+const Index = (props) => {
   // Set states
   const [data, setData] = useState([]);
   const [url] = useState(process.env.REACT_APP_API_ENDPOINT);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   // Load data
   useEffect(() => {
     const fetchData = async () => {
-      setIsError(false);
-      setIsLoading(true);
-
       try {
         const result = await axios(url);
-        setData(result.data);
+        const finalData = result.data.map((item, index) => {
+          item.id = index + 1;
+          return item;
+        });
+        setData(finalData);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -34,8 +35,8 @@ const Index = props => {
   const dataProps = {
     data,
     setData,
-    isLoading: isLoading,
-    isError
+    isLoading,
+    isError,
   };
 
   return (

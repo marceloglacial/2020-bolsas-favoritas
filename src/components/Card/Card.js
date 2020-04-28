@@ -2,7 +2,8 @@ import React from 'react';
 import Button from '../Button/Button';
 import './Card.scss';
 
-const Card = props => {
+const Card = (props) => {
+  const { item, removeFromCart } = props;
   const {
     enabled,
     full_price,
@@ -11,20 +12,19 @@ const Card = props => {
     university,
     course,
     id,
-    removeFromCart
-  } = props;
+  } = item;
 
   const remove = () => removeFromCart(id);
 
   const buttonDeleteProps = {
     title: 'Excluir',
     type: 'muted',
-    onClick: remove
+    onClick: remove,
   };
   const buttonShowProps = {
     title: 'Ver Ofeta',
     type: 'primary',
-    disabled: !enabled
+    disabled: !enabled,
   };
 
   return (

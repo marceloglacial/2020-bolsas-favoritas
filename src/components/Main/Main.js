@@ -1,73 +1,68 @@
 import React, { useState } from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
-import ContentHeader from '../ContentHeader/ContentHeader';
-// import NavTab from '../NavTab/NavTab';
+import Section from '../Section/Section';
 import Modal from '../Modal/Modal';
-import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
 import './Main.scss';
 
-const Main = props => {
-  const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
-  const [modalIsOpen, setmodalIsOpen] = useState(true);
-  const toggleModal = () => setmodalIsOpen(!modalIsOpen);
-
-  // Cart
-  const database = props.data.map((item, index) => {
-    item.id = index;
-    return item;
-  });
-  const [cart, setCart] = useState([]);
-  const addToCart = items => setCart(items);
-  const removeFromCart = id => {
-    const result = cart.filter(item => item.id !== id);
-    setCart(result);
-  };
-  const cardGridProps = {
-    cardGridFilter,
-    setCardGridFilter,
-    toggleModal,
-    cart,
-    addToCart,
-    removeFromCart
-  };
+const Main = (props) => {
+  const { isLoading, isError, data, setData } = props;
 
   // Modal
-  const modalProps = {
-    modalIsOpen,
-    toggleModal
-  };
-  const resultProps = {
-    modalIsOpen,
-    toggleModal,
-    cart,
-    addToCart,
-    removeFromCart,
-    database
+  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
+
+  if (isError)
+    return (
+      <Section>
+        <h1>Something is wrong</h1>
+      </Section>
+    );
+
+  if (isLoading)
+    return (
+      <Section>
+        <h1>Loading ...</h1>
+      </Section>
+    );
+
+  // Functions
+  const removeFromCart = (id) => {
+    const items = data.slice();
+    items.map((item) =>
+      item.id === parseInt(id) ? (item.isSelected = false) : item
+    );
+    return setData(items);
   };
 
-  // Filter
-  const filterProps = {
-    cart,
+  const addToCart = (e) => {
+    const id = parseInt(e.target.id);
+    const items = data.slice();
+    items.map((item) =>
+      item.id === id ? (item.isSelected = !item.isSelected) : item
+    );
+    return setData(items);
+  };
+
+  // Global Props
+  const globalProps = {
+    data,
+    setData,
     addToCart,
     removeFromCart,
-    database
+    modalIsOpen,
+    toggleModal,
   };
 
   return (
-    <>
-      <main className='main'>
-        <BreadCrumbs />
-        <ContentHeader />
-        {/* <NavTab {...cardGridProps} {...props} /> */}
-        <CardGrid {...cardGridProps} />
-        <Modal {...modalProps}>
-          <Filters {...filterProps} />
-          <ResultsGrid {...resultProps} />
-        </Modal>
-      </main>
-    </>
+    <main className='main'>
+      <BreadCrumbs />
+      <CardGrid {...globalProps} />
+      <Modal {...globalProps}>
+        <ResultsGrid {...globalProps} />
+      </Modal>
+    </main>
   );
 };
 export default Main;

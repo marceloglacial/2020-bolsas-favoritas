@@ -1,47 +1,22 @@
 import React from 'react';
-import Loading from '../Loading/Loading';
+import Section from '../Section/Section';
 import Card from '../Card/Card';
-import './CardGrid.scss';
 import CardAdd from '../Card/CardAdd';
+import './CardGrid.scss';
 
-const CardGrid = props => {
-  const { isLoading, isError, toggleModal, cart, removeFromCart } = props;
-
-  // Render Grid
-  const Grid = props => {
-    return <section className='cardgrid container'>{props.children}</section>;
-  };
-
-  // Cards
-  const Cards = () => {
-    return cart.map((card, index) => {
-      return <Card key={index} removeFromCart={removeFromCart} {...card} />;
+const CardGrid = (props) => {
+  const Cards = (props) => {
+    return props.data.map((item, index) => {
+      if (!item.isSelected) return false;
+      return <Card item={item} {...props} key={index} />;
     });
   };
 
-  // Define loading stages
-  const Content = props => {
-    if (isError)
-      return (
-        <Grid>
-          <Loading text={'Something is wrong'} />
-        </Grid>
-      );
-    if (isLoading) {
-      return (
-        <Grid>
-          <Loading text={'Loading ...'} />
-        </Grid>
-      );
-    } else {
-      return (
-        <Grid>
-          <CardAdd toggleModal={toggleModal} {...props} />
-          <Cards />
-        </Grid>
-      );
-    }
-  };
-  return <Content {...props} />;
+  return (
+    <Section name='cardgrid'>
+      <CardAdd {...props} />
+      <Cards {...props} />
+    </Section>
+  );
 };
 export default CardGrid;

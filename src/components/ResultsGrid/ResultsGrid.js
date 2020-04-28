@@ -1,48 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../Button/Button';
 import './ResultsGrid.scss';
 
-const ResultsGrid = props => {
-  const { database, toggleModal, addToCart, removeFromCart } = props;
-  const [selectedItems, setSelectedItems] = useState([]);
-  const hasItems = selectedItems.length > 0;
-
-  const addItemsToCart = () => {
-    if (hasItems) {
-      console.log('added');
-      addToCart(selectedItems);
-      toggleModal();
-    } else {
-      return false;
-    }
-  };
+const ResultsGrid = (props) => {
+  const { data, toggleModal, addToCart } = props;
+  const hasItems = data.find((item) => item.isSelected);
 
   // Buttons
   const buttonCancelProps = {
     title: 'Cancelar',
     type: 'muted',
-    onClick: toggleModal
+    onClick: toggleModal,
   };
   const buttonAddProps = {
     title: 'Adicionar bolsa(s)',
     type: hasItems ? 'primary' : 'disabled',
-    onClick: addItemsToCart
+    onClick: hasItems ? toggleModal : undefined,
   };
 
   const Items = () => {
-    return database.map((item, index) => {
+    return data.map((item, index) => {
       const {
         id,
         enabled,
         price_with_discount,
         discount_percentage,
         university,
-        course
+        course,
+        isSelected,
       } = item;
-
-      const handleSelect = e => {
-        setSelectedItems([...selectedItems, item]);
-      };
 
       if (!enabled) return false;
       return (
@@ -51,8 +37,9 @@ const ResultsGrid = props => {
             <input
               type='checkbox'
               htmlFor='type'
-              id={index}
-              onChange={e => handleSelect(e)}
+              id={id}
+              defaultChecked={isSelected}
+              onChange={(e) => addToCart(e)}
             />
           </div>
           <div className='results-list__image'>
