@@ -1,42 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
-import './Main.scss';
-import ContentHeader from '../ContentHeader/ContentHeader';
-import NavTab from '../NavTab/NavTab';
+import Section from '../Section/Section';
 import Modal from '../Modal/Modal';
-import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
+import './Main.scss';
 
-const Main = props => {
-  const [cardGridFilter, setCardGridFilter] = useState('Todos os Semestres');
-  const [isOpen, setIsOpen] = useState(true);
-  const toggleModal = () => setIsOpen(!isOpen);
+const Main = (props) => {
+  const { isLoading, isError, data, setData } = props;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cart, setCart] = useState([]);
 
-  const modalProps = {
-    isOpen,
-    toggleModal
+  const nestedCopy = (array) => {
+    return JSON.parse(JSON.stringify(array));
   };
 
-  const cardGridProps = {
-    filter: cardGridFilter,
-    setCardGridFilter,
-    toggleModal
+  // Close Modal on Esc
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.keyCode === 27) return setModalIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  // Remove From Cart
+  const removeFromCart = (id) => {
+    const items = [...data];
+    items.map((item) =>
+      item.id === parseInt(id) ? (item.isSelected = false) : item
+    );
+    return setData(items);
+  };
+  // Open Cart
+  const openCart = () => {
+    setModalIsOpen(true);
+    setCart(nestedCopy(data));
   };
 
+  // Add to Cart
+  const addToCart = () => {
+    setModalIsOpen(false);
+    setData(cart);
+  };
+  const handleSelectedItem = (e) => {
+    const id = parseInt(e.target.id);
+    const items = [...cart];
+    items.map((item) =>
+      item.id === id ? (item.isSelected = !item.isSelected) : item
+    );
+    return setCart(items);
+  };
+
+  // Global Props
+  const globalProps = {
+    data,
+    setData,
+    openCart,
+    addToCart,
+    handleSelectedItem,
+    removeFromCart,
+    modalIsOpen,
+    toggleModal,
+    cart,
+  };
+
+  // Loading States
+  if (isError)
+    return (
+      <Section>
+        <h1>Something is wrong</h1>
+      </Section>
+    );
+
+  if (isLoading)
+    return (
+      <Section>
+        <h1>Loading ...</h1>
+      </Section>
+    );
   return (
-    <>
-      <main className='main'>
-        <BreadCrumbs />
-        <ContentHeader />
-        <NavTab {...cardGridProps} {...props} />
-        <CardGrid {...cardGridProps} {...props} />
-        <Modal {...modalProps}>
-          <Filters {...props} />
-          <ResultsGrid {...props} />
-        </Modal>
-      </main>
-    </>
+    <main className='main'>
+      <BreadCrumbs />
+      <CardGrid {...globalProps} />
+      <Modal {...globalProps}>
+        <ResultsGrid {...globalProps} />
+      </Modal>
+    </main>
   );
 };
 export default Main;

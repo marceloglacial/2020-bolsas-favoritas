@@ -2,6 +2,26 @@ import React from 'react';
 import './Filters.scss';
 
 const Filters = props => {
+  const { database } = props;
+
+  const Cities = () => {
+    const all = [...new Set(database.map(item => item.campus.city))].sort();
+    return all.map((item, index) => (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    ));
+  };
+
+  const Courses = () => {
+    const all = [...new Set(database.map(item => item.course.name))].sort();
+    return all.map((item, index) => (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    ));
+  };
+
   return (
     <div className='filters'>
       <div className='filter'>
@@ -9,8 +29,7 @@ const Filters = props => {
           Selecione sua cidade
         </label>
         <select className='filter__options' id='city' name='city'>
-          <option>São José dos Campos</option>
-          <option>São José dos Campos</option>
+          <Cities />
         </select>
       </div>
       <div className='filter'>
@@ -18,12 +37,11 @@ const Filters = props => {
           Selecione o curso de sua preferência
         </label>
         <select className='filter__options' id='course' name='course'>
-          <option>Arquitetura e Urbanismo</option>
-          <option>São José dos Campos</option>
+          <Courses />
         </select>
       </div>
       <div className='filter'>
-        <h4 className='filter__title' htmlFor='type'>
+        <h4 className='filter__title filter__title--type' htmlFor='type'>
           Como você quer estudar?
         </h4>
         <div className='filter__checkboxes'>
@@ -48,9 +66,10 @@ const Filters = props => {
         </div>
       </div>
       <div className='filter'>
-        <h4 className='filter__title' htmlFor='type'>
+        <h4 className='filter__title filter__title--price' htmlFor='type'>
           Até quanto pode pagar?
         </h4>
+        <p>R$ 10.000</p>
         <input
           className='filter__range'
           type='range'

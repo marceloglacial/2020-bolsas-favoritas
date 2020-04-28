@@ -1,0 +1,121 @@
+@import '../Styles/mixins';
+
+$border: solid 3px var(--grey-dark);
+.results {
+  padding-top: 3rem;
+
+  * {
+    margin: 0;
+  }
+}
+
+.results-header {
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  @include media('<desktop') {
+    align-items: flex-start;
+  }
+}
+
+.results-header__title {
+  width: 50%;
+}
+.results-header {
+  border-bottom: $border;
+  margin-bottom: 1rem;
+}
+.results-header__sort {
+  text-align: right;
+  width: 50%;
+}
+.results-header__sort-select {
+  appearance: none;
+  background: url('../../static/images/chevron-down-solid-blue.svg') no-repeat
+    right center transparent;
+  background-size: 1rem;
+  border: none;
+  color: var(--blue-dark);
+  font-weight: 700;
+  outline: none;
+  padding: 1rem 1.5rem 1rem 0.4rem;
+
+  @include media('<desktop') {
+    transform: translateX(-1.5rem);
+  }
+}
+.results-list {
+  padding-top: 1rem;
+}
+
+.results-list__item {
+  align-items: center;
+  border-bottom: $border;
+  display: grid;
+  gap: 2rem;
+  grid-template-areas: 'checkbox image course price';
+  grid-template-columns: 1.5rem 120px 1fr 120px;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+
+  @include media('<desktop') {
+    gap: 1rem;
+    grid-template-areas:
+      'checkbox image course'
+      'checkbox image  price';
+    grid-template-columns: 1.5rem 120px 1fr;
+  }
+}
+
+.results-list__checkbox {
+  grid-area: checkbox;
+}
+
+.results-list__image {
+  grid-area: image;
+}
+
+.results-list__course {
+  grid-area: course;
+}
+
+.results-list__course--name {
+  color: var(--blue-dark);
+  padding-bottom: 0.5rem;
+}
+
+.results-list__price {
+  grid-area: price;
+}
+
+.results-list__price--discount {
+  color: var(--green);
+  font-size: 1.1rem;
+  padding-left: 0.25rem;
+}
+
+.results-list__price--full {
+  color: var(--green);
+  font-weight: 700;
+  padding-top: 0.5rem;
+}
+
+.results-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: 1rem;
+    padding: 1rem 1.5rem;
+
+    @include media('<desktop') {
+      padding: 1rem;
+    }
+  }
+  button:first-child {
+    margin: 0;
+  }
+}
