@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
 import Section from '../Section/Section';
@@ -8,26 +8,21 @@ import './Main.scss';
 
 const Main = (props) => {
   const { isLoading, isError, data, setData } = props;
-
-  // Modal
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const toggleModal = () => setModalIsOpen(!modalIsOpen);
 
-  if (isError)
-    return (
-      <Section>
-        <h1>Something is wrong</h1>
-      </Section>
-    );
+  // Close Modal on Esc
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.keyCode === 27) return toggleModal();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
-  if (isLoading)
-    return (
-      <Section>
-        <h1>Loading ...</h1>
-      </Section>
-    );
-
-  // Functions
+  // Remove From Cart
   const removeFromCart = (id) => {
     const items = data.slice();
     items.map((item) =>
@@ -36,6 +31,7 @@ const Main = (props) => {
     return setData(items);
   };
 
+  // Add to Cart
   const addToCart = (e) => {
     const id = parseInt(e.target.id);
     const items = data.slice();
@@ -55,6 +51,20 @@ const Main = (props) => {
     toggleModal,
   };
 
+  // Loading States
+  if (isError)
+    return (
+      <Section>
+        <h1>Something is wrong</h1>
+      </Section>
+    );
+
+  if (isLoading)
+    return (
+      <Section>
+        <h1>Loading ...</h1>
+      </Section>
+    );
   return (
     <main className='main'>
       <BreadCrumbs />
