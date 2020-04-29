@@ -1,3 +1,5 @@
+@import '../Styles/mixins';
+
 .card {
   align-items: center;
   background: var(--white);
@@ -87,8 +89,10 @@
 .card--add__link {
   color: var(--black);
   display: flex;
-  min-height: 555px;
   text-decoration: none;
+  @include media('>tablet') {
+    min-height: 555px;
+  }
 }
 .card--add__title,
 .card--add__description {

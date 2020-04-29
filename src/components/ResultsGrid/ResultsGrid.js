@@ -22,7 +22,6 @@ const ResultsGrid = (props) => {
     return cart.map((item, index) => {
       const {
         id,
-        enabled,
         price_with_discount,
         discount_percentage,
         university,
@@ -30,7 +29,6 @@ const ResultsGrid = (props) => {
         isSelected,
       } = item;
 
-      if (!enabled) return false;
       return (
         <div className='results-list__item' key={index}>
           <div className='results-list__checkbox'>
