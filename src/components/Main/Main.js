@@ -3,6 +3,7 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
 import Section from '../Section/Section';
 import Modal from '../Modal/Modal';
+import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
 import './Main.scss';
 
@@ -55,6 +56,18 @@ const Main = (props) => {
     return setCart(items);
   };
 
+  // Filter city
+  const filterCity = (e) => console.log(e.target.value);
+
+  // Filter Programs
+  const filterPrograms = (e) => console.log(e.target.value);
+
+  // Filter Price
+  const filterPrice = (e) => console.log(e.target.value);
+
+  // Filter How
+  const filterHow = (e) => console.log(e.target.id);
+
   // Global Props
   const globalProps = {
     data,
@@ -66,6 +79,10 @@ const Main = (props) => {
     modalIsOpen,
     toggleModal,
     cart,
+    filterCity,
+    filterPrograms,
+    filterPrice,
+    filterHow,
   };
 
   // Loading States
@@ -87,6 +104,7 @@ const Main = (props) => {
       <BreadCrumbs />
       <CardGrid {...globalProps} />
       <Modal {...globalProps}>
+        <Filters {...globalProps} />
         <ResultsGrid {...globalProps} />
       </Modal>
     </main>

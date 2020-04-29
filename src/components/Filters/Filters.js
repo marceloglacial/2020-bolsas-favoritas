@@ -1,11 +1,11 @@
 import React from 'react';
 import './Filters.scss';
 
-const Filters = props => {
-  const { database } = props;
+const Filters = (props) => {
+  const { cart, filterCity, filterPrograms, filterPrice, filterHow } = props;
 
   const Cities = () => {
-    const all = [...new Set(database.map(item => item.campus.city))].sort();
+    const all = [...new Set(cart.map((item) => item.campus.city))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
@@ -14,7 +14,7 @@ const Filters = props => {
   };
 
   const Courses = () => {
-    const all = [...new Set(database.map(item => item.course.name))].sort();
+    const all = [...new Set(cart.map((item) => item.course.name))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
@@ -28,7 +28,13 @@ const Filters = props => {
         <label className='filter__title' htmlFor='city'>
           Selecione sua cidade
         </label>
-        <select className='filter__options' id='city' name='city'>
+        <select
+          className='filter__options'
+          id='city'
+          name='city'
+          onChange={(e) => filterCity(e)}
+        >
+          <option>Escolha uma cidade</option>
           <Cities />
         </select>
       </div>
@@ -36,7 +42,13 @@ const Filters = props => {
         <label className='filter__title' htmlFor='course'>
           Selecione o curso de sua preferência
         </label>
-        <select className='filter__options' id='course' name='course'>
+        <select
+          className='filter__options'
+          id='course'
+          name='course'
+          onChange={(e) => filterPrograms(e)}
+        >
+          <option>Escolha um curso</option>
           <Courses />
         </select>
       </div>
@@ -47,19 +59,21 @@ const Filters = props => {
         <div className='filter__checkboxes'>
           <div className='filter__checkbox'>
             <input
-              type='checkbox'
+              type='radio'
               htmlFor='type'
-              name='presencial'
+              name='howTo'
               id='presencial'
+              onChange={(e) => filterHow(e)}
             />
             <label htmlFor='presencial'> Presencial</label>
           </div>
           <div className='filter__checkbox'>
             <input
-              type='checkbox'
+              type='radio'
               htmlFor='type'
-              name='distancia'
+              name='howTo'
               id='distancia'
+              onChange={(e) => filterHow(e)}
             />
             <label htmlFor='distancia'> A distância</label>
           </div>
@@ -79,6 +93,7 @@ const Filters = props => {
           max='10000'
           defaultValue='500'
           step='500'
+          onChange={(e) => filterPrice(e)}
         />
       </div>
     </div>
