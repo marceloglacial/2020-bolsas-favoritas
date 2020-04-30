@@ -55,6 +55,7 @@ const Main = (props) => {
     );
     return setCart(items);
   };
+  console.log('ouch');
 
   // Filter city
   const filterCity = (e) => console.log(e.target.value);
@@ -66,7 +67,7 @@ const Main = (props) => {
   const filterPrice = (e) => console.log(e.target.value);
 
   // Filter How
-  const filterHow = (e) => console.log(e.target.id);
+  const filterKind = (e) => console.log(e.target.id);
 
   // Global Props
   const globalProps = {
@@ -82,7 +83,7 @@ const Main = (props) => {
     filterCity,
     filterPrograms,
     filterPrice,
-    filterHow,
+    filterKind,
   };
 
   // Loading States

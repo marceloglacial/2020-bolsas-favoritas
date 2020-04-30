@@ -2,7 +2,7 @@ import React from 'react';
 import './Filters.scss';
 
 const Filters = (props) => {
-  const { cart, filterCity, filterPrograms, filterPrice, filterHow } = props;
+  const { cart, filterCity, filterPrograms, filterPrice, filterKind } = props;
 
   const Cities = () => {
     const all = [...new Set(cart.map((item) => item.campus.city))].sort();
@@ -34,7 +34,7 @@ const Filters = (props) => {
           name='city'
           onChange={(e) => filterCity(e)}
         >
-          <option>Escolha uma cidade</option>
+          <option value='all'>Todas as Cidades</option>
           <Cities />
         </select>
       </div>
@@ -48,7 +48,7 @@ const Filters = (props) => {
           name='course'
           onChange={(e) => filterPrograms(e)}
         >
-          <option>Escolha um curso</option>
+          <option value='all'>Todos os cursos</option>
           <Courses />
         </select>
       </div>
@@ -59,23 +59,23 @@ const Filters = (props) => {
         <div className='filter__checkboxes'>
           <div className='filter__checkbox'>
             <input
-              type='radio'
+              type='checkbox'
               htmlFor='type'
-              name='howTo'
-              id='presencial'
-              onChange={(e) => filterHow(e)}
+              name='kind'
+              id='Presencial'
+              onChange={(e) => filterKind(e)}
             />
-            <label htmlFor='presencial'> Presencial</label>
+            <label htmlFor='Presencial'> Presencial</label>
           </div>
           <div className='filter__checkbox'>
             <input
-              type='radio'
+              type='checkbox'
               htmlFor='type'
-              name='howTo'
-              id='distancia'
-              onChange={(e) => filterHow(e)}
+              name='kind'
+              id='EaD'
+              onChange={(e) => filterKind(e)}
             />
-            <label htmlFor='distancia'> A distância</label>
+            <label htmlFor='EaD'> A distância</label>
           </div>
         </div>
       </div>
