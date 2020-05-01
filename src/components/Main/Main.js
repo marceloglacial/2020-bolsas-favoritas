@@ -8,15 +8,18 @@ import ResultsGrid from '../ResultsGrid/ResultsGrid';
 import './Main.scss';
 
 const Main = (props) => {
+  // GLOBAL
+  // =============================
   const { isLoading, isError, data, setData } = props;
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [cart, setCart] = useState([]);
-
   const nestedCopy = (array) => {
     return JSON.parse(JSON.stringify(array));
   };
+  console.log('ouch');
 
+  // MODAL
+  // =============================
   // Close Modal on Esc
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const toggleModal = () => setModalIsOpen(!modalIsOpen);
   useEffect(() => {
     const handleEsc = (e) => {
@@ -27,6 +30,10 @@ const Main = (props) => {
       window.removeEventListener('keydown', handleEsc);
     };
   }, []);
+
+  // CART
+  // =============================
+  const [cart, setCart] = useState([]);
 
   // Remove From Cart
   const removeFromCart = (id) => {
@@ -55,21 +62,32 @@ const Main = (props) => {
     );
     return setCart(items);
   };
-  console.log('ouch');
 
-  // Filter city
-  const filterCity = (e) => console.log(e.target.value);
+  // Filters
+  // =============================
 
-  // Filter Programs
-  const filterPrograms = (e) => console.log(e.target.value);
+  const getMaxPrice = (type) => {
+    const prices = [
+      ...new Set(data.map((item) => item.price_with_discount)),
+    ].sort();
+    return Math.round(Math.max(...prices));
+  };
 
-  // Filter Price
-  const filterPrice = (e) => console.log(e.target.value);
+  const [filters, setFilters] = useState({
+    city: 'all',
+    course: 'all',
+    kind: [],
+    price: 9999,
+  });
 
-  // Filter How
-  const filterKind = (e) => console.log(e.target.id);
+  const filterCity = (e) => setFilters({ ...filters, city: e.target.value });
+  const filterPrograms = (e) =>
+    setFilters({ ...filters, course: e.target.value });
+  const filterPrice = (e) => setFilters({ ...filters, price: e.target.value });
+  const filterKind = (e) => setFilters({ ...filters, kind: [e.target.id] });
 
   // Global Props
+  // =============================
   const globalProps = {
     data,
     setData,
@@ -84,9 +102,11 @@ const Main = (props) => {
     filterPrograms,
     filterPrice,
     filterKind,
+    filters,
   };
 
   // Loading States
+  // =============================
   if (isError)
     return (
       <Section>

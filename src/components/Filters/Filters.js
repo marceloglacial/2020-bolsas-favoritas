@@ -1,11 +1,20 @@
 import React from 'react';
+import formatPrice from '../../functions/formatPrice';
 import './Filters.scss';
 
 const Filters = (props) => {
-  const { cart, filterCity, filterPrograms, filterPrice, filterKind } = props;
+  const {
+    data,
+    cart,
+    filters,
+    filterCity,
+    filterPrograms,
+    filterPrice,
+    filterKind,
+  } = props;
 
   const Cities = () => {
-    const all = [...new Set(cart.map((item) => item.campus.city))].sort();
+    const all = [...new Set(data.map((item) => item.campus.city))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
@@ -14,12 +23,23 @@ const Filters = (props) => {
   };
 
   const Courses = () => {
-    const all = [...new Set(cart.map((item) => item.course.name))].sort();
+    const all = [...new Set(data.map((item) => item.course.name))].sort();
     return all.map((item, index) => (
       <option key={index} value={item}>
         {item}
       </option>
     ));
+  };
+
+  const getPrice = (type) => {
+    const prices = [
+      ...new Set(cart.map((item) => item.price_with_discount)),
+    ].sort();
+    if (type === 'max') {
+      return Math.round(Math.max(...prices));
+    } else {
+      return Math.round(Math.min(...prices));
+    }
   };
 
   return (
@@ -32,6 +52,7 @@ const Filters = (props) => {
           className='filter__options'
           id='city'
           name='city'
+          value={filters.city}
           onChange={(e) => filterCity(e)}
         >
           <option value='all'>Todas as Cidades</option>
@@ -46,6 +67,7 @@ const Filters = (props) => {
           className='filter__options'
           id='course'
           name='course'
+          value={filters.course}
           onChange={(e) => filterPrograms(e)}
         >
           <option value='all'>Todos os cursos</option>
@@ -83,16 +105,16 @@ const Filters = (props) => {
         <h4 className='filter__title filter__title--price' htmlFor='type'>
           Até quanto pode pagar?
         </h4>
-        <p>R$ 10.000</p>
+        <p>{formatPrice(filters.price)}</p>
         <input
           className='filter__range'
           type='range'
-          id='cowbell'
-          name='cowbell'
-          min='0'
-          max='10000'
-          defaultValue='500'
-          step='500'
+          id='pricerange'
+          name='pricerange'
+          min={getPrice('min')}
+          max={getPrice('max')}
+          value={filters.price}
+          step='100'
           onChange={(e) => filterPrice(e)}
         />
       </div>
