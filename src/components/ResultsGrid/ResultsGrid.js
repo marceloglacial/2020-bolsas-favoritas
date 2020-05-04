@@ -29,18 +29,21 @@ const ResultsGrid = (props) => {
   }
   if (filters.kind.length !== 0) {
     result = result.filter((item) => filters.kind.includes(item.course.kind));
+  } else {
+    result = [];
   }
   if (filters.price !== 'all') {
     result = result.filter((item) => item.price_with_discount <= filters.price);
   }
-  if (result.length === 0)
-    return (
-      <div className='results-list__item' key={'no-results'}>
-        <p>Nenhum resultado encontrado</p>
-      </div>
-    );
 
   const Items = () => {
+    if (result.length === 0)
+      return (
+        <div className='results-list__item--empty' key={'no-results'}>
+          <p>Nenhum resultado encontrado</p>
+        </div>
+      );
+
     return result.map((item, index) => {
       const {
         id,

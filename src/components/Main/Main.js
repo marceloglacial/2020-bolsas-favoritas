@@ -69,7 +69,7 @@ const Main = (props) => {
   const [filters, setFilters] = useState({
     city: 'all',
     course: 'all',
-    kind: [],
+    kind: ['Presencial', 'EaD'],
     price: 1000,
   });
 

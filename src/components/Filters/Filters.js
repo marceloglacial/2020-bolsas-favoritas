@@ -85,6 +85,7 @@ const Filters = (props) => {
               htmlFor='type'
               name='kind'
               id='Presencial'
+              defaultChecked={true}
               onChange={(e) => filterKind(e)}
             />
             <label htmlFor='Presencial'> Presencial</label>
@@ -95,6 +96,7 @@ const Filters = (props) => {
               htmlFor='type'
               name='kind'
               id='EaD'
+              defaultChecked={true}
               onChange={(e) => filterKind(e)}
             />
             <label htmlFor='EaD'> A distância</label>

@@ -69,6 +69,9 @@ $border: solid 3px var(--grey-dark);
     grid-template-columns: 1.5rem 120px 1fr;
   }
 }
+.results-list__item--empty {
+  padding-bottom: 2rem;
+}
 
 .results-list__checkbox {
   grid-area: checkbox;
