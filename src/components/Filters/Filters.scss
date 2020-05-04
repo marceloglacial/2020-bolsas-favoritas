@@ -61,6 +61,10 @@
   align-items: center;
   display: flex;
   padding-right: 2rem;
+
+  input {
+    margin-right: 0.5rem;
+  }
 }
 
 // Cross-Browser Range Input

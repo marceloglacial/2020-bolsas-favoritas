@@ -3,19 +3,24 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import CardGrid from '../CardGrid/CardGrid';
 import Section from '../Section/Section';
 import Modal from '../Modal/Modal';
+import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
+import { sortAlpha } from '../../functions/sortArray';
 import './Main.scss';
 
 const Main = (props) => {
+  // GLOBAL
+  // =============================
   const { isLoading, isError, data, setData } = props;
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [cart, setCart] = useState([]);
-
   const nestedCopy = (array) => {
     return JSON.parse(JSON.stringify(array));
   };
+  console.log('ouch');
 
+  // MODAL
+  // =============================
   // Close Modal on Esc
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const toggleModal = () => setModalIsOpen(!modalIsOpen);
   useEffect(() => {
     const handleEsc = (e) => {
@@ -26,6 +31,10 @@ const Main = (props) => {
       window.removeEventListener('keydown', handleEsc);
     };
   }, []);
+
+  // CART
+  // =============================
+  const [cart, setCart] = useState([]);
 
   // Remove From Cart
   const removeFromCart = (id) => {
@@ -38,7 +47,7 @@ const Main = (props) => {
   // Open Cart
   const openCart = () => {
     setModalIsOpen(true);
-    setCart(nestedCopy(data));
+    setCart(sortAlpha(nestedCopy(data)));
   };
 
   // Add to Cart
@@ -55,7 +64,34 @@ const Main = (props) => {
     return setCart(items);
   };
 
+  // Filters
+  // =============================
+
+  const [filters, setFilters] = useState({
+    city: 'all',
+    course: 'all',
+    kind: ['Presencial', 'EaD'],
+    price: 1000,
+  });
+
+  const filterCity = (e) => setFilters({ ...filters, city: e.target.value });
+  const filterPrograms = (e) =>
+    setFilters({ ...filters, course: e.target.value });
+  const filterPrice = (e) => setFilters({ ...filters, price: e.target.value });
+  const filterKind = (e) => {
+    const result = filters.kind;
+    const isChecked = e.target.checked;
+    const kind = e.target.id;
+    isChecked
+      ? setFilters({ ...filters, kind: [...result, kind] })
+      : setFilters({
+          ...filters,
+          kind: result.filter((item) => item !== kind),
+        });
+  };
+
   // Global Props
+  // =============================
   const globalProps = {
     data,
     setData,
@@ -66,9 +102,16 @@ const Main = (props) => {
     modalIsOpen,
     toggleModal,
     cart,
+    setCart,
+    filterCity,
+    filterPrograms,
+    filterPrice,
+    filterKind,
+    filters,
   };
 
   // Loading States
+  // =============================
   if (isError)
     return (
       <Section>
@@ -87,6 +130,7 @@ const Main = (props) => {
       <BreadCrumbs />
       <CardGrid {...globalProps} />
       <Modal {...globalProps}>
+        <Filters {...globalProps} />
         <ResultsGrid {...globalProps} />
       </Modal>
     </main>
