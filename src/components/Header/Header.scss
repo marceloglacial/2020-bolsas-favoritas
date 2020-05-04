@@ -1,6 +1,5 @@
 @import '../Styles/mixins';
 
-// Container
 .page-header__container {
   display: flex;
   font-weight: 700;
@@ -9,9 +8,11 @@
   @include media('<desktop') {
     padding: 1rem 0;
   }
+  a {
+    color: var(--blue);
+    text-decoration: none;
+  }
 }
-
-// Page Info and Contact
 .page-header__info {
   color: var(--blue);
   width: 500px;
@@ -34,8 +35,10 @@
     @include media('<desktop') {
       border-width: 3px;
       flex-direction: column;
-      margin: 0;
+      justify-content: center;
       height: 100%;
+      margin: 0;
+      padding: 0;
       width: 100%;
     }
   }
@@ -51,7 +54,7 @@
     margin-right: 0.5rem;
     padding: 5px 10px;
     @include media('<desktop') {
-      margin-bottom: 2px;
+      margin: 0 0 2px 0;
     }
   }
 
@@ -62,7 +65,6 @@
   }
 }
 
-// Page Logo
 .page-header__logo {
   flex-grow: 1;
 }
@@ -76,19 +78,19 @@
   text-indent: -9999px;
   width: 100%;
   @include media('<desktop') {
-    height: 100%;
+    height: 85%;
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
   }
 }
 
-// User Info
 .page-header__user-info {
   color: var(--blue);
   width: 500px;
   @include media('<desktop') {
     border-left: solid 3px var(--grey-dark);
     flex-direction: column-reverse;
+    justify-content: center;
     padding-left: 1rem;
     width: 70px;
   }

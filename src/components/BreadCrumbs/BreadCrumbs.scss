@@ -1,7 +1,8 @@
 @import '../Styles/mixins';
 
-.breadcrumbs__container {
+.breadcrumbs .breadcrumbs__container {
   color: var(--black);
+  justify-content: flex-start;
   list-style: none;
   padding: 1rem 0;
 }
@@ -18,7 +19,7 @@
     }
   }
 
-  @include media('>tablet') {
+  @include media('>=desktop') {
     &:after {
       content: '/';
       margin-left: 1rem;
@@ -39,7 +40,7 @@
     height: 1px;
     position: absolute;
     right: left;
-    transition: width 0.2s ease-in-out;
+    transition: width 0.1s ease-in-out;
     width: 0%;
     z-index: 0;
   }

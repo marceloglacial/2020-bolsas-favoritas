@@ -1,0 +1,198 @@
+@import '../Styles/mixins';
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-top: 2rem;
+  @include media('<desktop') {
+    width: 100%;
+  }
+}
+
+@include media('>=desktop') {
+  .filter:not(:nth-child(2n)) {
+    padding-right: 2rem;
+  }
+}
+
+.filter__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+  @include media('<desktop') {
+    font-size: 0.8rem;
+  }
+
+  &--type {
+    padding-bottom: 2rem;
+  }
+
+  &--price {
+    margin: 0;
+    padding: 0;
+  }
+}
+.filter__options {
+  appearance: none;
+  background: url('../../static/images/chevron-down-solid.svg') no-repeat 95%
+    center var(--white);
+  background-size: 0.75rem;
+  border: solid 1px var(--black-soft);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.filter__checkboxes {
+  display: flex;
+}
+
+.filter__checkbox {
+  align-items: center;
+  display: flex;
+  padding-right: 2rem;
+
+  input {
+    margin-right: 0.5rem;
+  }
+}
+
+// Cross-Browser Range Input
+// @see https://github.com/darlanrod/input-range-sass
+// @see https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+$track-color: #18acc4 !default;
+$thumb-color: white !default;
+
+$thumb-radius: 12px !default;
+$thumb-height: 24px !default;
+$thumb-width: 24px !default;
+$thumb-border-width: 2px !default;
+$thumb-border-color: #18acc4 !default;
+
+$track-width: 100% !default;
+$track-height: 3px !default;
+$track-border-width: 0px !default;
+$track-border-color: transparent !default;
+
+$track-radius: 5px !default;
+$contrast: 5% !default;
+
+$ie-bottom-track-color: darken($track-color, $contrast) !default;
+
+@mixin track {
+  cursor: default;
+  height: $track-height;
+  transition: all 0.2s ease;
+  width: $track-width;
+}
+
+@mixin thumb {
+  background: $thumb-color;
+  border: $thumb-border-width solid $thumb-border-color;
+  border-radius: $thumb-radius;
+  box-sizing: border-box;
+  cursor: default;
+  height: $thumb-height;
+  width: $thumb-width;
+}
+
+.filter__range {
+  -webkit-appearance: none;
+  background: transparent;
+  margin: $thumb-height / 2 0;
+  width: $track-width;
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &:focus {
+    outline: 0;
+
+    &::-webkit-slider-runnable-track {
+      background: lighten($track-color, $contrast);
+    }
+
+    &::-ms-fill-lower {
+      background: $track-color;
+    }
+
+    &::-ms-fill-upper {
+      background: lighten($track-color, $contrast);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    -webkit-appearance: none;
+    margin-top: (
+      (-$track-border-width * 2 + $track-height) / 2 - $thumb-height / 2
+    );
+  }
+
+  &::-moz-range-track {
+    @include track;
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+    height: $track-height / 2;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-track {
+    @include track;
+    background: transparent;
+    border-color: transparent;
+    border-width: ($thumb-height / 2) 0;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: $ie-bottom-track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
+  }
+
+  &::-ms-fill-upper {
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: ($track-radius * 2);
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+    margin-top: $track-height / 4;
+  }
+
+  &:disabled {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb,
+    &::-webkit-slider-runnable-track,
+    &::-ms-fill-lower,
+    &::-ms-fill-upper {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@import '../Styles/mixins';
+
+.content-header__description {
+  padding-bottom: 2rem;
+  @include media('<tablet') {
+    padding-bottom: 0rem;
+  }
+}

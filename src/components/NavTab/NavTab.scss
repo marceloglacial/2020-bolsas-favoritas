@@ -1,0 +1,61 @@
+@import '../Styles/mixins';
+
+$border: solid 2px var(--blue-dark);
+
+.navtab {
+  justify-content: flex-end;
+  display: flex;
+  padding-bottom: 3rem;
+  width: 100%;
+  @include media('<tablet') {
+    padding-bottom: 1rem;
+  }
+}
+
+.navtab__container {
+  border: $border;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navtab__item {
+  border-right: $border;
+  overflow: hidden;
+
+  @include media('<tablet') {
+    width: 100%;
+    border-right: none;
+    border-bottom: $border;
+  }
+}
+
+.navtab__item:last-child {
+  border: none;
+}
+
+.navtab__item-link {
+  display: inline-block;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+
+  @include media('<tablet') {
+    text-align: center;
+    width: 100%;
+  }
+
+  &.is-selected {
+    background: var(--blue-dark);
+    color: var(--white);
+  }
+
+  &:hover {
+    color: var(--white);
+  }
+}

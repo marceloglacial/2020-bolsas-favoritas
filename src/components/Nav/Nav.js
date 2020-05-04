@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import './Nav.scss';
 
 const Nav = props => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [modalIsOpen, setmodalIsOpen] = useState(true);
   const [openClass, setOpenClass] = useState('');
 
   const toggleClass = e => {
     e.preventDefault();
-    isOpen ? setOpenClass('is-open') : setOpenClass('');
-    isOpen ? setIsOpen(false) : setIsOpen(true);
+    modalIsOpen ? setOpenClass('is-open') : setOpenClass('');
+    modalIsOpen ? setmodalIsOpen(false) : setmodalIsOpen(true);
   };
 
   return (
     <nav className='nav'>
       <div className='nav__container container'>
-        <div className='nav__item'>
+        <div className='nav__item nav__item--active'>
           <a href='/'>Minha conta</a>
         </div>
         <div className={`nav__submenu ${openClass}`}>

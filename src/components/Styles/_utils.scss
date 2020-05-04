@@ -13,18 +13,47 @@
 
 // Importants to override styles
 .flex-center {
-  align-items: center !important;
-  display: flex !important;
-  justify-self: center !important;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .hidden-on-mobile {
   @include media('<desktop') {
-    display: none !important;
+    display: none;
   }
 }
 .hidden-on-desktop {
   @include media('>=desktop') {
-    display: none !important;
+    display: none;
+  }
+}
+
+// Effects
+.effect-courtain {
+  position: relative;
+  z-index: 0;
+}
+
+.effect-courtain:after {
+  content: '';
+  display: block;
+  height: 100px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+  width: 0%;
+  z-index: -1;
+}
+
+.effect-courtain:hover:after {
+  width: 100%;
+}
+
+.effect-courtain--blue {
+  &:hover:after {
+    background: var(--blue-dark);
+    color: var(--white);
   }
 }

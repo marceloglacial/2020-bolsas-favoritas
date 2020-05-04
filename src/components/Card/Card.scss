@@ -1,0 +1,101 @@
+@import '../Styles/mixins';
+
+.card {
+  align-items: center;
+  background: var(--white);
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+
+.card__info {
+  width: 100%;
+}
+
+.card__university-name {
+  font-weight: 700;
+  padding: 2rem 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.card__course-name {
+  color: var(--blue-dark);
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.card__course-kind {
+  font-weight: 700;
+  padding: 1.5rem 0;
+  text-transform: uppercase;
+}
+.card__university-score {
+  font-weight: 700;
+  padding-bottom: 1.5rem;
+  border-bottom: solid 2px var(--shadow);
+}
+
+.card__start-date {
+  padding-bottom: 1.5rem;
+  border-bottom: solid 2px var(--shadow);
+}
+
+.card__price-title {
+  font-weight: 700;
+  padding-top: 0.5rem;
+}
+
+.card__price-full {
+  text-decoration: line-through;
+}
+
+.card__price-discount strong {
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
+.card__actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+
+  button {
+    width: 50%;
+  }
+}
+
+.card--add__icon {
+  color: var(--blue);
+  font-size: 2.5rem;
+  border: solid 5px var(--blue);
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  padding: 6px 8px 6px 10px;
+}
+.card--add__link {
+  color: var(--black);
+  display: flex;
+  text-decoration: none;
+  @include media('>tablet') {
+    min-height: 555px;
+  }
+}
+.card--add__title,
+.card--add__description {
+  margin: 0;
+  max-width: 95%;
+}
