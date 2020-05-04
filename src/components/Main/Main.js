@@ -66,25 +66,28 @@ const Main = (props) => {
   // Filters
   // =============================
 
-  const getMaxPrice = (type) => {
-    const prices = [
-      ...new Set(data.map((item) => item.price_with_discount)),
-    ].sort();
-    return Math.round(Math.max(...prices));
-  };
-
   const [filters, setFilters] = useState({
     city: 'all',
     course: 'all',
     kind: [],
-    price: 9999,
+    price: 1000,
   });
 
   const filterCity = (e) => setFilters({ ...filters, city: e.target.value });
   const filterPrograms = (e) =>
     setFilters({ ...filters, course: e.target.value });
   const filterPrice = (e) => setFilters({ ...filters, price: e.target.value });
-  const filterKind = (e) => setFilters({ ...filters, kind: [e.target.id] });
+  const filterKind = (e) => {
+    const result = filters.kind;
+    const isChecked = e.target.checked;
+    const kind = e.target.id;
+    isChecked
+      ? setFilters({ ...filters, kind: [...result, kind] })
+      : setFilters({
+          ...filters,
+          kind: result.filter((item) => item !== kind),
+        });
+  };
 
   // Global Props
   // =============================
