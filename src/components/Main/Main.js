@@ -5,6 +5,7 @@ import Section from '../Section/Section';
 import Modal from '../Modal/Modal';
 import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
+import { sortAlpha } from '../../functions/sortArray';
 import './Main.scss';
 
 const Main = (props) => {
@@ -46,7 +47,7 @@ const Main = (props) => {
   // Open Cart
   const openCart = () => {
     setModalIsOpen(true);
-    setCart(nestedCopy(data));
+    setCart(sortAlpha(nestedCopy(data)));
   };
 
   // Add to Cart
@@ -101,6 +102,7 @@ const Main = (props) => {
     modalIsOpen,
     toggleModal,
     cart,
+    setCart,
     filterCity,
     filterPrograms,
     filterPrice,

@@ -2,9 +2,17 @@ import React from 'react';
 import Button from '../Button/Button';
 import './ResultsGrid.scss';
 import formatPrice from '../../functions/formatPrice';
+import { sortAlpha, sortHigher, sortLower } from '../../functions/sortArray';
 
 const ResultsGrid = (props) => {
-  const { cart, filters, toggleModal, addToCart, handleSelectedItem } = props;
+  const {
+    cart,
+    setCart,
+    filters,
+    toggleModal,
+    addToCart,
+    handleSelectedItem,
+  } = props;
   const hasItems = cart.find((item) => item.isSelected);
 
   // Buttons
@@ -35,6 +43,19 @@ const ResultsGrid = (props) => {
   if (filters.price !== 'all') {
     result = result.filter((item) => item.price_with_discount <= filters.price);
   }
+
+  // Sort
+  const sortCart = (order) => {
+    if (order === 'name') setCart(sortAlpha(result));
+    if (order === 'lowerPrice')
+      setCart(sortLower(result, 'price_with_discount'));
+    if (order === 'higherPrice')
+      setCart(sortHigher(result, 'price_with_discount'));
+    if (order === 'lowerDiscount')
+      setCart(sortLower(result, 'discount_percentage'));
+    if (order === 'higherDiscount')
+      setCart(sortHigher(result, 'discount_percentage'));
+  };
 
   const Items = () => {
     if (result.length === 0)
@@ -103,12 +124,13 @@ const ResultsGrid = (props) => {
           <select
             id='results-header__sort-select'
             className='results-header__sort-select'
+            onChange={(e) => sortCart(e.target.value)}
           >
-            <option>Nome da faculdade</option>
-            <option>Menor Preço</option>
-            <option>Maior Preço</option>
-            <option>Menor Desconto</option>
-            <option>Maior Desconto</option>
+            <option value='name'>Nome da faculdade</option>
+            <option value='lowerPrice'>Menor Preço</option>
+            <option value='higherPrice'>Maior Preço</option>
+            <option value='lowerDiscount'>Menor Desconto</option>
+            <option value='higherDiscount'>Maior Desconto</option>
           </select>
         </div>
       </div>
