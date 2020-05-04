@@ -15,7 +15,6 @@ const Main = (props) => {
   const nestedCopy = (array) => {
     return JSON.parse(JSON.stringify(array));
   };
-  console.log('ouch');
 
   // MODAL
   // =============================
