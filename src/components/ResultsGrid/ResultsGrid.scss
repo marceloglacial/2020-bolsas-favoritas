@@ -7,6 +7,9 @@ $border: solid 3px var(--grey-dark);
   * {
     margin: 0;
   }
+  @include media('<=phone') {
+    font-size: 90%;
+  }
 }
 
 .results-header {
@@ -67,6 +70,9 @@ $border: solid 3px var(--grey-dark);
       'checkbox image course'
       'checkbox image  price';
     grid-template-columns: 1.5rem 120px 1fr;
+    @include media('<=phone') {
+      grid-template-columns: 1rem 50px 1fr;
+    }
   }
 }
 .results-list__item--empty {

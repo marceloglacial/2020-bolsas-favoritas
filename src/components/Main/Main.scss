@@ -1,7 +1,12 @@
+@import '../Styles/mixins';
+
 .main {
   background: var(--grey);
   display: inline-block;
   margin: 0;
   padding: 0;
   width: 100%;
+  @include media('<=phone') {
+    font-size: 90%;
+  }
 }

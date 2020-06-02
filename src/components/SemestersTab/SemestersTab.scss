@@ -13,6 +13,10 @@
   font-weight: 700;
   border: solid 1px var(--blue-dark);
 
+  @include media('<tablet') {
+    width: 100%;
+  }
+
   &--active {
     background-color: var(--blue-dark);
     color: var(--white);
@@ -24,17 +28,30 @@
     color: var(--white);
   }
 
-  &:not(:last-child) {
-    border-right: none;
+  @include media('>tablet') {
+    &:not(:last-child) {
+      border-right: none;
+    }
   }
 
   &:first-child {
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-right: 0;
+
+    @include media('<tablet') {
+      border-bottom-left-radius: 0rem;
+      border-top-right-radius: 0.5rem;
+      border-right: unset;
+    }
   }
   &:last-child {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    @include media('<tablet') {
+      border-bottom-left-radius: 0.5rem;
+      border-top: none;
+      border-top-right-radius: 0;
+    }
   }
 }
