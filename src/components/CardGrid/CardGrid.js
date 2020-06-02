@@ -5,8 +5,9 @@ import CardAdd from '../Card/CardAdd';
 import './CardGrid.scss';
 
 const CardGrid = (props) => {
+  const allCards = props.filteredCheckout;
   const Cards = (props) => {
-    return props.data.map((item, index) => {
+    return allCards.map((item, index) => {
       if (!item.isSelected) return false;
       return <Card item={item} {...props} key={index} />;
     });

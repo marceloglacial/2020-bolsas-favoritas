@@ -6,15 +6,20 @@ import Modal from '../Modal/Modal';
 import Filters from '../Filters/Filters';
 import ResultsGrid from '../ResultsGrid/ResultsGrid';
 import { sortAlpha } from '../../functions/sortArray';
+import nestedCopy from '../../functions/nestedCopy';
+import useStateWithLocalStorage from '../../functions/localStorage';
 import './Main.scss';
+import SemestersTab from '../SemestersTab/SemestersTab';
 
 const Main = (props) => {
   // GLOBAL
   // =============================
   const { isLoading, isError, data, setData } = props;
-  const nestedCopy = (array) => {
-    return JSON.parse(JSON.stringify(array));
-  };
+
+  // Checkout
+  const [checkout, setCheckout] = useStateWithLocalStorage(
+    'bolsasCartCheckout'
+  );
 
   // MODAL
   // =============================
@@ -33,26 +38,29 @@ const Main = (props) => {
 
   // CART
   // =============================
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(checkout);
 
   // Remove From Cart
   const removeFromCart = (id) => {
-    const items = [...data];
+    const items = [...checkout];
     items.map((item) =>
       item.id === parseInt(id) ? (item.isSelected = false) : item
     );
+    setCheckout(items);
     return setData(items);
   };
   // Open Cart
   const openCart = () => {
     setModalIsOpen(true);
-    setCart(sortAlpha(nestedCopy(data)));
+    const initial = checkout.length === 0 ? data : checkout;
+    setCart(sortAlpha(nestedCopy(initial)));
   };
 
   // Add to Cart
   const addToCart = () => {
     setModalIsOpen(false);
     setData(cart);
+    setCheckout(cart);
   };
   const handleSelectedItem = (e) => {
     const id = parseInt(e.target.id);
@@ -89,6 +97,43 @@ const Main = (props) => {
         });
   };
 
+  // Filter by semester
+  const [filteredCheckout, setFilteredCheckout] = useState(checkout);
+
+  useEffect(() => {
+    setFilteredCheckout(checkout);
+  }, [checkout]);
+
+  const semesters = [
+    ...new Set(data.map((item) => item.enrollment_semester)),
+  ].sort();
+
+  const formatSemesterName = (name) =>
+    name.slice(-1) + 'o semestre de ' + name.slice(0, 4);
+
+  const [activeSemester, setActiveSemester] = useState('all');
+
+  useEffect(() => {
+    setActiveSemester('all');
+  }, [data]);
+
+  // Card Selection filters
+  const filterCart = (e) => {
+    const target = e.target;
+    const value = target.value;
+    if (value === 'all') {
+      setActiveSemester('all');
+      return setFilteredCheckout([...cart]);
+    }
+    const result = checkout.filter(
+      (item) => item.enrollment_semester === value
+    );
+    setActiveSemester(value);
+    return setFilteredCheckout([...result]);
+  };
+
+  // localStorage.clear();
+
   // Global Props
   // =============================
   const globalProps = {
@@ -107,6 +152,14 @@ const Main = (props) => {
     filterPrice,
     filterKind,
     filters,
+    checkout,
+    setCheckout,
+    semesters,
+    formatSemesterName,
+    activeSemester,
+    setActiveSemester,
+    filterCart,
+    filteredCheckout,
   };
 
   // Loading States
@@ -127,6 +180,14 @@ const Main = (props) => {
   return (
     <main className='main'>
       <BreadCrumbs />
+      <Section>
+        <h2>Bolsas Favoritas</h2>
+        <p>
+          Adicione bolsas de cursos e faculdades do seu interesse e receba
+          atualizações com as melhores ofertas disponíveis.
+        </p>
+        <SemestersTab {...globalProps} />
+      </Section>
       <CardGrid {...globalProps} />
       <Modal {...globalProps}>
         <Filters {...globalProps} />
