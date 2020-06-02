@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
+import formatPrice from '../../functions/formatPrice';
 import './Card.scss';
 
 const Card = (props) => {
@@ -44,9 +45,9 @@ const Card = (props) => {
         </div>
         <div className='card__prince'>
           <p className='card__price-title'>Mensalidade com o Quero Bolsa:</p>
-          <p className='card__price-full'>R$: {full_price}</p>
+          <p className='card__price-full'>{formatPrice(full_price)}</p>
           <div className='card__price-discount'>
-            <strong>R$ {price_with_discount}</strong> / mês
+            <strong>{formatPrice(price_with_discount)}</strong> / mês
           </div>
         </div>
         <div className='card__actions'>

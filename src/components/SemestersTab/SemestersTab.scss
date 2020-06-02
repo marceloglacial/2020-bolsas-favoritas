@@ -1,0 +1,40 @@
+@import '../Styles/mixins';
+
+.cartfilter {
+  padding: 1rem 0 2rem 0;
+  text-align: right;
+}
+.cartfilter__button {
+  appearance: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--white);
+  transition: all 0.2s ease-in-out;
+  color: var(--blue-dark);
+  font-weight: 700;
+  border: solid 1px var(--blue-dark);
+
+  &--active {
+    background-color: var(--blue-dark);
+    color: var(--white);
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--blue-dark);
+    color: var(--white);
+  }
+
+  &:not(:last-child) {
+    border-right: none;
+  }
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-right: 0;
+  }
+  &:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+}
