@@ -186,8 +186,8 @@ const Main = (props) => {
           Adicione bolsas de cursos e faculdades do seu interesse e receba
           atualizações com as melhores ofertas disponíveis.
         </p>
+        <SemestersTab {...globalProps} />
       </Section>
-      <SemestersTab {...globalProps} />
       <CardGrid {...globalProps} />
       <Modal {...globalProps}>
         <Filters {...globalProps} />

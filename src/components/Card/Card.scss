@@ -90,7 +90,7 @@
   color: var(--black);
   display: flex;
   text-decoration: none;
-  @include media('>tablet') {
+  @include media('>=tablet') {
     min-height: 555px;
   }
 }
